@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>toutiao test</title>
+</head>
+<body>
+<H2>使用参数说明</H2>
+<ul>
+    <li>在浏览器打开，传入参数</li>
+    <li>ip DP服务器地址</li>
+    <li>sk DP对应的服务端口，非必填，默认80</li>
+    <li>path 请求的路径</li>
+</ul>
+<div style="border:1px solid green;padding: 2px 10px;">
+    <form action='/send' method='POST' target="targetframe">
+        <div> IP
+            <input type="text" name='ip' value="127.0.0.1">
+        </div>
+        <div> 端口
+            <input type="text" name='sk' value="8888">
+        </div>
+        <div> 数据库
+            <input type="text" id='dbname' value="IFC_develop_autobuild">
+        </div>
+        <div> 路径
+            <input type="text" id='path' name='path' value="/b?exid=15&pdt=15&d=IFC_develop_autobuild&c=1" style='width:90%'>
+        </div>
+        <div>
+            <span>类型</span>
+            <select name="exchage_name" id="tpselect" onchange="doChage(this)">
+                <option value="mediamax" exchangeid="1">模拟[ mediamax ]请求</option>
+                <option value="adx" exchangeid="2">模拟[ adx ]请求</option>
+                <option value="tanx" exchangeid="3">模拟[ tanx ]请求</option>
+                <option value="tencent" exchangeid="4">模拟[ tencent ]请求</option>
+                <option value="baidu" exchangeid="5">模拟[ baidu ]请求</option>
+                <option value="sina" exchangeid="6">模拟[ sina ]请求</option>
+                <option value="gdt" exchangeid="7">模拟[ gdt ]请求</option>
+                <option value="baichuan" exchangeid="8">模拟[ baichuan ]请求</option>
+                <option value="max" exchangeid="9">模拟[ max ]请求</option>
+                <option value="inmobi" exchangeid="10">模拟[ inmobi ]请求</option>
+                <option value="yex" exchangeid="11">模拟[ yex ]请求</option>
+                <option value="toutiao" exchangeid="99">模拟[ toutiao ]请求</option>
+            </select>
+        </div>
+        <div><hr>
+            <div id="request" ><br>
+                <textarea name="request" style="width:80%;height:200px;" th:text="${request}"></textarea>
+            </div>
+        </div>
+        <div>
+            <input type="submit" value="submit">
+        </div>
+    </form>
+</div>
+<br/>
+<div style="border:1px solid green;padding: 2px 10px;">
+ <textarea name="responer" style="width:80%;height:200px;" th:text="${test}"></textarea>
+</div>
+
+<h3>调试发送程序请找 </h3>
+</body>
+</html>
