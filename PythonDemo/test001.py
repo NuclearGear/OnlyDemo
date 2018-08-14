@@ -1,11 +1,13 @@
 # a ="we are the teet"
 # #print (' '.join(a[:-2].split()[::-1]))
 # a=a.split()[::-1]
+import random
 # a[1]=a[1][:-1]
 # print ' '.join(a)
-a=["50","20","30","10","99","1"]
-print range(5)
-print range(5,5)
+a=["50","20","30","10","99"]
+b=random.randint(0,100)
+a.append(str(b))
+print a
 class listsort:
     def sort(self,list):
         for x in range(len(list)-1):
