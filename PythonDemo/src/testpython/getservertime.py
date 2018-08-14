@@ -21,4 +21,4 @@ def get_servertime(host):
     c=(at - bt).seconds if at>bt else (bt-at).seconds
     print("误差 {}s".format(c))
 
-get_servertime("http://10.200.44.31:9980/dc/cache?db=IFC_develop_2_autobuild")
+get_servertime("http://www.baidu.com")
