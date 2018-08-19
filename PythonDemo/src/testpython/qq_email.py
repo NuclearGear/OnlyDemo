@@ -9,18 +9,15 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import *
 from selenium.webdriver.support.wait import WebDriverWait
-from exceltest import ExcelUtil
+import exceltest
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 sys.path.append("..")
 
-<<<<<<< Updated upstream
-readexcel=exceltest.ExcelUtil("C:\\Users\\Administrator\\denglutest.xlsx")
-print readexcel.dict_data()
-=======
-readexcel=ExcelUtil("C:\\Users\\only\\denglutest.xlsx")
->>>>>>> Stashed changes
+#readexcel=exceltest.ExcelUtil("C:\\Users\\Administrator\\denglutest.xlsx")
+#print readexcel.dict_data()
+readexcel=exceltest.ExcelUtil("C:\\Users\\only\\denglutest.xlsx")
 d = readexcel.dict_data()
 nowTime = time.strftime("%Y%m%d_%H_%M_%S")
 path="..\\screenshot\\"
