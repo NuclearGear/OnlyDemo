@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import xlrd
+import xlrd,openpyxl
 class ExcelUtil():
     def __init__(self,excelpath,sheetname="Sheet1"):
         self.data=xlrd.open_workbook(excelpath)
@@ -23,8 +23,31 @@ class ExcelUtil():
                 r.append(s)
                 j+=1
             return r
-
+class ReadExcel():
+    def __init__(self,excelpath,sheetname='Sheet1'):
+        self.wb=openpyxl.load_workbook(excelpath)
+        self.sheet=self.wb.active
+    def dict_data(self):
+        # for row in self.sheet.rows:
+        #     for cell in row:
+        #         print cell.value
+        # print "------------------------------"
+        # for columns in self.sheet.columns:
+        #     for cell in columns:
+        #         print cell.value
+        # print "------------------------------"
+        key=[]
+        values=[]
+        for title in list(self.sheet.rows)[0]:
+            key.append(title.value)
+        for data in list(self.sheet.rows)[1]:
+            values.append(data.value)
+        data=[]
+        data.append(dict(zip(key,values)))
+        return data
 if __name__ == "__main__":
     filepath="C:\\Users\\Administrator\\denglutest.xlsx"
     a=ExcelUtil(filepath)
+    b=ReadExcel(filepath)
     print a.dict_data()
+    print b.dict_data()

@@ -5,17 +5,20 @@ import unittest
 import time
 import ddt
 import os
-import exceltest
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+#sys.path.append('../')
+from testpython import exceltest
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import *
 from selenium.webdriver.support.wait import WebDriverWait
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
-readexcel=exceltest.ExcelUtil("C:\\Users\\only\\denglutest.xlsx")
+
+
+readexcel=exceltest.ReadExcel("C:\\Users\\Administrator\\denglutest.xlsx")
 print readexcel.dict_data()
 d = readexcel.dict_data()
 nowTime = time.strftime("%Y%m%d_%H_%M_%S")
