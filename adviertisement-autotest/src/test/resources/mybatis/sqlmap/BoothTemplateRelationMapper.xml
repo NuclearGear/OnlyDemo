@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.BoothTemplateRelationMapper">
+  <resultMap id="BaseResultMap" type="dba.model.BoothTemplateRelation">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="booth_code" jdbcType="VARCHAR" property="boothCode" />
+    <result column="template_id" jdbcType="BIGINT" property="templateId" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, booth_code, template_id, created_time
+  </sql>
+  <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from booth_template_relation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+
+  <select id="selectByTemplateId"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from booth_template_relation
+    where  template_id = #{templateId};
+  </select>
+
+
+  <select id="selectByBoothCode"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from booth_template_relation
+    where  booth_code = #{boothCode};
+  </select>
+
+
+  <select id="getBoothCountByTemplateId"  resultType="java.lang.Integer">
+    select count(distinct booth_code)
+    from booth_template_relation
+    where template_id = #{templateId};
+  </select>
+
+
+  <delete id="deleteRelationNotInMaterialTemplate">
+    DELETE FROM booth_template_relation
+    WHERE template_id NOT IN (SELECT id FROM material_template);
+  </delete>
+
+
+  <delete id="deleteRelationNotInBoothCode">
+    DELETE FROM booth_template_relation
+    WHERE booth_code NOT IN (SELECT booth_code FROM booth);
+  </delete>
+
+
+</mapper>

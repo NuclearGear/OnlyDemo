@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://code.alibabatech.com/schema/dubbo
+  http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<dubbo:application name="perf-test" />
+	<dubbo:registry address="zookeeper://zk1.perf.pajkdc.com:2181" />
+	<dubbo:reference id="userService"   interface="com.pajk.user.api.UserService"  version="PERF" timeout="6000" />
+	<dubbo:reference id="bIService" interface="com.pajk.polaris.client.BIService" version="PERF" timeout="30000" />
+	<dubbo:reference id="iAppBoothService" interface="com.pajk.adrouter.api.m.unify.interfaces.IAppBoothService" version="PERF" timeout="30000" />
+	<dubbo:reference id="adHocLoginService" interface="com.pajk.user.admin.AdHocLoginService" version="PERF" timeout="30000" />
+	<dubbo:reference id="adEngineService" interface="com.pajk.adengine.client.service.AdEngineService" version="PERF" timeout="30000" />
+
+
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://perfdb-m1.db.pajkdc.com:3306/yacht" />
+		<property name="username" value="yacht" />
+		<property name="password" value="yacht" />
+	</bean>
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:mybatis/mybatis-config.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 扫描包自动注入mapper ,自动为mapper创建MapperFactoryBean-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="dba.mapper" />
+	</bean>
+
+
+</beans>
+

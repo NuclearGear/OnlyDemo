@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.MaterialMapper">
+  <resultMap id="BaseResultMap" type="dba.model.Material">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="content_type" jdbcType="BIGINT" property="contentType" />
+    <result column="content_key" jdbcType="VARCHAR" property="contentKey" />
+    <result column="content_size" jdbcType="VARCHAR" property="contentSize" />
+    <result column="jump_type" jdbcType="VARCHAR" property="jumpType" />
+    <result column="jump_url" jdbcType="VARCHAR" property="jumpUrl" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="sub_title" jdbcType="VARCHAR" property="subTitle" />
+    <result column="content_key2" jdbcType="VARCHAR" property="contentKey2" />
+    <result column="content_key3" jdbcType="VARCHAR" property="contentKey3" />
+    <result column="style" jdbcType="BIT" property="style" />
+    <result column="content_size2" jdbcType="VARCHAR" property="contentSize2" />
+    <result column="content_size3" jdbcType="VARCHAR" property="contentSize3" />
+    <result column="open_mode" jdbcType="BIT" property="openMode" />
+    <result column="current_price" jdbcType="VARCHAR" property="currentPrice" />
+    <result column="original_price" jdbcType="VARCHAR" property="originalPrice" />
+    <result column="show_title" jdbcType="INTEGER" property="showTitle" />
+    <result column="template_id" jdbcType="BIGINT" property="templateId" />
+    <result column="input" jdbcType="VARCHAR" property="input" />
+    <result column="link" jdbcType="VARCHAR" property="link" />
+    <result column="currency_type" jdbcType="TINYINT" property="currencyType" />
+    <result column="show_sign" jdbcType="TINYINT" property="showSign" />
+    <result column="material_template_id" jdbcType="BIGINT" property="materialTemplateId" />
+    <result column="is_click" jdbcType="TINYINT" property="isClick" />
+    <result column="show_style" jdbcType="TINYINT" property="showStyle" />
+    <result column="store_content" jdbcType="VARCHAR" property="storeContent" />
+    <result column="store_type" jdbcType="TINYINT" property="storeType" />
+    <result column="skip_offset" jdbcType="BIGINT" property="skipOffset" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, content_type, content_key, content_size, jump_type, jump_url, gmt_create,
+    gmt_modify, title, sub_title, content_key2, content_key3, style, content_size2, content_size3,
+    open_mode, current_price, original_price, show_title, template_id, input, link, currency_type,
+    show_sign, material_template_id, is_click, show_style, store_content, store_type,
+    skip_offset
+  </sql>
+
+
+  <select id="selectById" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from material
+    where id = #{id}
+  </select>
+
+  <select id="selectLikeContentKey" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from material
+    where content_key like concat('%', #{likeName}, '%')
+  </select>
+
+
+  <delete id="deleteMaterialNotInPlan">
+    DELETE FROM material
+    WHERE  id NOT IN (SELECT material_id FROM plan_material_relation);
+  </delete>
+
+</mapper>

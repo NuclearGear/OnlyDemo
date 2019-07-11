@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.TargettingTimeMapper">
+  <resultMap id="BaseResultMap" type="dba.model.TargettingTime">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="plan_id" jdbcType="BIGINT" property="planId" />
+    <result column="start_time" jdbcType="INTEGER" property="startTime" />
+    <result column="end_time" jdbcType="INTEGER" property="endTime" />
+    <result column="relation" jdbcType="TINYINT" property="relation" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, plan_id, start_time, end_time, relation
+  </sql>
+
+  <select id="selectByPlanId"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from targetting_time
+    where plan_id = #{planId}
+  </select>
+
+
+
+  <delete id="deleteTargettingTimeNotInPlan" parameterType="java.lang.Long">
+    delete from targetting_time
+    where plan_id not in (select id from plan);
+  </delete>
+
+
+
+</mapper>

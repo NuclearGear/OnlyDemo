@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://code.alibabatech.com/schema/dubbo
+  http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<dubbo:application name="yachr-autotest" />
+	<dubbo:registry address="zookeeper://zk.dev.pajkdc.com:2181" />
+
+	<dubbo:reference id="adHocLoginService" interface="com.pajk.user.admin.AdHocLoginService" version="LATEST" timeout="30000" />
+	<dubbo:reference id="operationsService" interface="com.pajk.yachtshowcase.client.OperationsService" version="LATEST" timeout="30000" />
+	<dubbo:reference id="reportService" interface="com.pajk.yachtshowcase.client.ReportService" version="LATEST" timeout="30000" />
+	<dubbo:reference id="clientService" interface="com.pajk.yachtshowcase.client.ClientService" version="LATEST" timeout="30000" />
+	<dubbo:reference id="bIService" interface="com.pajk.polaris.client.BIService" version="LATEST" timeout="30000" />
+</beans>

@@ -1,0 +1,6 @@
+
+
+
+conn-db =jdbc:mysql://devdb-m1.db.pajkdc.com:3306/yacht?user=tddl_user&password=Tdl01
+
+domain=.pajkdc.com

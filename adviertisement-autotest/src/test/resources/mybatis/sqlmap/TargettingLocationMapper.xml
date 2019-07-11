@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.TargettingLocationMapper">
+  <resultMap id="BaseResultMap" type="dba.model.TargettingLocation">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="plan_id" jdbcType="BIGINT" property="planId" />
+    <result column="region_name" jdbcType="VARCHAR" property="regionName" />
+    <result column="region_id" jdbcType="INTEGER" property="regionId" />
+    <result column="relation" jdbcType="TINYINT" property="relation" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, plan_id, region_name, region_id, relation
+  </sql>
+
+
+  <select id="selectByPlanId"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from targetting_location
+    where plan_id = #{planId}
+  </select>
+
+
+
+  <delete id="deleteTargettingLocationNotInPlan" parameterType="java.lang.Long">
+    delete from targetting_location
+    where plan_id not in (select id from plan);
+  </delete>
+
+</mapper>

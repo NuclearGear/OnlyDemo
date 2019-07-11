@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.AreaMapper">
+  <resultMap id="BaseResultMap" type="dba.model.Area">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="city_code" jdbcType="INTEGER" property="cityCode" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="province_code" jdbcType="INTEGER" property="provinceCode" />
+    <result column="province_name" jdbcType="VARCHAR" property="provinceName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, city_code, city_name, province_code, province_name
+  </sql>
+
+  <select id="selectAllArea"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from area
+  </select>
+
+</mapper>

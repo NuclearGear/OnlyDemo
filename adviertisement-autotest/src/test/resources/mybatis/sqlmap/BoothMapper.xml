@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.BoothMapper">
+  <resultMap id="BaseResultMap" type="dba.model.Booth">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="booth_code" jdbcType="VARCHAR" property="boothCode" />
+    <result column="booth_name" jdbcType="VARCHAR" property="boothName" />
+    <result column="size" jdbcType="VARCHAR" property="size" />
+    <result column="frame_count" jdbcType="BIGINT" property="frameCount" />
+    <result column="booth_type" jdbcType="BIGINT" property="boothType" />
+    <result column="closeable" jdbcType="BIT" property="closeable" />
+    <result column="interact_type" jdbcType="BIGINT" property="interactType" />
+    <result column="position_id" jdbcType="BIGINT" property="positionId" />
+    <result column="preview_url" jdbcType="VARCHAR" property="previewUrl" />
+    <result column="xaxis" jdbcType="BIGINT" property="xaxis" />
+    <result column="yaxis" jdbcType="BIGINT" property="yaxis" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
+    <result column="biz_type" jdbcType="TINYINT" property="bizType" />
+    <result column="support_DSP" jdbcType="TINYINT" property="supportDsp" />
+    <result column="large_size" jdbcType="VARCHAR" property="largeSize" />
+    <result column="count" jdbcType="BIGINT" property="count" />
+    <result column="style" jdbcType="TINYINT" property="style" />
+    <result column="resource_type" jdbcType="TINYINT" property="resourceType" />
+    <result column="delivery_strategy" jdbcType="TINYINT" property="deliveryStrategy" />
+    <result column="version" jdbcType="BIGINT" property="version" />
+    <result column="status" jdbcType="BIGINT" property="status" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, booth_code, booth_name, size, frame_count, booth_type, closeable, interact_type, 
+    position_id, preview_url, xaxis, yaxis, gmt_create, gmt_modify, biz_type, support_DSP,large_size,count, style,
+    resource_type, delivery_strategy, version,status, comment,ad_platform, filled_frames
+  </sql>
+
+
+  <select id="getBoothsCount"   resultType="java.lang.Integer">
+    select count(*)
+    from booth;
+  </select>
+
+
+
+  <select id="selectByBoothCode"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from booth
+    where booth_code = #{boothCode}
+  </select>
+
+  <select id="selectLikeBoothCode"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from  booth
+    where booth_code like concat('%', #{boothCode}, '%')
+  </select>
+
+
+  <select id="selectLikeBoothName"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from  booth
+    where booth_name like concat('%', #{name}, '%') and status=1
+  </select>
+
+  <select id="selectByPositionId"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from  booth
+    where  position_id= #{positionId} and status=1
+  </select>
+
+
+
+  <select id="getBoothsWithPageCount"   resultType="java.lang.Integer">
+    select count(*)
+    from booth  where 1=1
+    <if test="boothName != null and boothName != '' "> and  booth_name like concat('%', #{boothName}, '%')</if>
+    <if test="resourceType != null and resourceType>=0"> and  resource_type= #{resourceType}</if>
+    <if test="position != null and position != '' "> and  position like concat('%', #{position}, '%')</if>
+  </select>
+
+  <select id="getBoothWithPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from Booth  where 1=1
+    <if test="boothName != null and boothName != '' "> and  booth_name like concat('%', #{boothName}, '%')</if>
+    <if test="resourceType != null and resourceType>0"> and  resource_type= #{resourceType}</if>
+    <if test="position != null and position != '' "> and  position like concat('%', #{position}, '%')</if>
+    order by id desc limit #{size} offset #{crrentPage};
+  </select>
+
+
+
+  <delete id="deleteLikeBoothCode">
+    delete from  booth
+    where  booth_code like concat('%', #{boothCode}, '%')
+  </delete>
+
+
+  <delete id="deleteLikeName">
+    delete from  booth
+    where  booth_name like concat('%', #{name}, '%')
+  </delete>
+
+</mapper>

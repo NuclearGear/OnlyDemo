@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <package name="mybatis.domain"/>
+    </typeAliases>
+
+    <mappers>
+        <mapper resource="mybatis/sqlmap/OwnerMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/UserMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/AdMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/DirectionMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/PlanMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/BoothMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/VersionMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/VersionBoothRelationMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/PeriodMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/PlanBoothRelationMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/PlanMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/TagMaterialRelationMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/TargetingMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/ThirdMonitorMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/MaterialMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/TagMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/PositionMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/SpSwitchMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/AdReportMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/PlanReportMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/ChannelReportMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/ChannelMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/AdvertiserIncomeMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/MaterialTemplateMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/TemplateElementMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/BoothTemplateRelationMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/ElementAttributeMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/BoothPlatformRelationMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/BoothSellRelationMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/SellMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/SlotMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/PlanDateMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/PlanDeliveryAmountMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/TargettingLocationMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/TargettingAgeMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/TargettingKeywordsMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/TargettingPlatformMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/MaterialElementMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/AreaMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/TargettingTimeMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/FrequencyControlMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/BoothFrequencyControlMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/PlanMaterialRelationMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/BoothAppRelationMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/PlanAppRelationMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/PlanItemMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/AnchorCouponMapper.xml"/>
+        <mapper resource="mybatis/sqlmap/AnchorAccountMapper.xml"/>
+    </mappers>
+</configuration>

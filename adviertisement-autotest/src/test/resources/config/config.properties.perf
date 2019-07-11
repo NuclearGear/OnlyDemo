@@ -1,0 +1,28 @@
+conn-db =jdbc:mysql://perfdb-m1.db.pajkdc.com:3306/yacht?user=yacht&password=yacht
+perf-db =jdbc:mysql://perfdb-m1.db.pajkdc.com:3306/yacht?user=yacht&password=yacht
+domain=.pajkdc.com
+
+
+#tair
+public.tair.configserver.master=tair-m2.test.pajkdc.com:5198
+public.tair.configserver.slave=tair-m1.test.pajkdc.com:5198
+
+adsys.group.name=p_group1
+adsys.namespace=818
+tair.timeout=1000
+tair.dpt.prefix=consult_dpt_
+tair.tag.prefix=consult_tag_
+
+dip.tair.group.name=m_group1
+dip.tair.namespace=821
+
+
+redis.diamond.url=diamond.perf.pajkdc.com:8080
+redis.cluster.name=test2-cluster
+
+
+domain=.pajkdc.com
+staffId=2464170908
+uId=yanjunhuan
+
+serverUrl=http://srv.perf.pajkdc.com

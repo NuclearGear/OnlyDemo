@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.MaterialTemplateMapper">
+  <resultMap id="BaseResultMap" type="dba.model.MaterialTemplate">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="content_type" jdbcType="TINYINT" property="contentType" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="is_click" jdbcType="TINYINT" property="isClick" />
+    <result column="material_style" jdbcType="TINYINT" property="materialStyle" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, type, status, content_type, created_time, update_time, is_click, material_style
+  </sql>
+
+
+
+  <select id="selectById" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from material_template
+    where id = #{id}
+  </select>
+
+  <select id="selectByName" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from material_template
+    where name = #{name} limit 1
+  </select>
+
+
+  <select id="selectLikeName"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from  material_template
+    where  name like concat('%', #{name}, '%') and status=1
+  </select>
+
+
+
+  <select id="selectByStyle"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from  material_template
+    where  type=#{name} and status=1
+  </select>
+
+
+
+
+  <select id="getMetTemCount" resultType="java.lang.Integer">
+    select count(*)
+    from material_template
+    where 1=1
+    <if test="name != null and name != '' "> and  name like concat('%', #{name}, '%')</if>
+    ;
+  </select>
+
+
+  <select id="getMateTemplWithPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from material_template
+    where 1=1
+    <if test="name != null and name != '' "> and  name like concat('%', #{name}, '%')</if>
+    order by id desc limit #{size} offset #{crrentPage};
+  </select>
+
+
+
+  <delete id="deleteLikeName" >
+    delete from material_template
+    where  name like concat('%', #{name}, '%')
+    AND  id NOT IN (SELECT template_id FROM yacht.`material`)
+  </delete>
+
+</mapper>

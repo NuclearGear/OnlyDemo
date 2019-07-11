@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.ThirdMonitorMapper">
+  <resultMap id="BaseResultMap" type="dba.model.ThirdMonitor">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="vendor_code" jdbcType="VARCHAR" property="vendorCode" />
+    <result column="display_url" jdbcType="VARCHAR" property="displayUrl" />
+    <result column="click_url" jdbcType="VARCHAR" property="clickUrl" />
+    <result column="material_id" jdbcType="BIGINT" property="materialId" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
+    <result column="version" jdbcType="BIGINT" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, vendor_code, display_url, click_url, material_id, gmt_create, gmt_modify, version
+  </sql>
+
+  <select id="selectByMaterialId"   resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from third_monitor
+    where material_id = #{MaterialId}
+  </select>
+
+  <delete id="deleteThirdMonitorNotInMaterial">
+    DELETE FROM third_monitor
+    WHERE  material_id NOT IN (SELECT id FROM material);
+  </delete>
+
+</mapper>

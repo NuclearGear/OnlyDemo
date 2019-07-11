@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.VersionBoothRelationMapper">
+  <resultMap id="BaseResultMap" type="dba.model.VersionBoothRelation">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="version_id" jdbcType="BIGINT" property="versionId" />
+    <result column="booth_code" jdbcType="VARCHAR" property="boothCode" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, version_id, booth_code, gmt_create, gmt_modify
+  </sql>
+  <select id="selectByBoothCode"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from version_booth_relation
+    where booth_code = #{boothCode}
+  </select>
+
+
+  <delete id="deleteVersionBoothRelationNotInBooth">
+    DELETE FROM version_booth_relation
+    WHERE  booth_code NOT IN (SELECT booth_code FROM booth);
+  </delete>
+
+</mapper>

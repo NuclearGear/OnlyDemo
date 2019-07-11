@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.TargetingMapper">
+  <resultMap id="BaseResultMap" type="dba.model.Targeting">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="plan_id" jdbcType="BIGINT" property="planId" />
+    <result column="sys_id" jdbcType="BIGINT" property="sysId" />
+    <result column="version_code" jdbcType="BIGINT" property="versionCode" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, plan_id, sys_id, version_code, gmt_create, gmt_modify
+  </sql>
+
+  <select id="selectByPlanId"   resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from targeting
+    where plan_id = #{planId}
+  </select>
+
+
+  <delete id="deleteTargetingNotInPlan">
+    DELETE FROM targeting
+    WHERE plan_id NOT IN (SELECT id FROM plan);
+  </delete>
+
+</mapper>

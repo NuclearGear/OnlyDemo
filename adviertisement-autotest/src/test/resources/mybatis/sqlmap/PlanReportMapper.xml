@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.PlanReportMapper">
+  <resultMap id="BaseResultMap" type="dba.model.PlanReport">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="ad_id" jdbcType="BIGINT" property="adId" />
+    <result column="ad_type" jdbcType="BIGINT" property="adType" />
+    <result column="ad_name" jdbcType="VARCHAR" property="adName" />
+    <result column="config_location" jdbcType="VARCHAR" property="configLocation" />
+    <result column="actual_location" jdbcType="VARCHAR" property="actualLocation" />
+    <result column="stat_date" jdbcType="VARCHAR" property="statDate" />
+    <result column="click" jdbcType="BIGINT" property="click" />
+    <result column="pv" jdbcType="BIGINT" property="pv" />
+    <result column="ctr" jdbcType="VARCHAR" property="ctr" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
+    <result column="plan_id" jdbcType="BIGINT" property="planId" />
+    <result column="display_count" jdbcType="BIGINT" property="displayCount" />
+    <result column="valid_display_count" jdbcType="BIGINT" property="validDisplayCount" />
+    <result column="loading_page_pv" jdbcType="BIGINT" property="loadingPagePv" />
+    <result column="loading_page_uv" jdbcType="BIGINT" property="loadingPageUv" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, ad_id, ad_type, ad_name, config_location, actual_location, stat_date, click, 
+    pv, ctr, gmt_create, gmt_modify, plan_id, display_count, valid_display_count, loading_page_pv, 
+    loading_page_uv
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from plan_report
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from plan_report
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+
+  <select id="selectSumByAdId"   resultMap="BaseResultMap">
+    SELECT DATE_FORMAT(stat_date,'%Y-%m-%d') stat_date,SUM(click) click,SUM(pv) pv,CONCAT(SUM(click)/SUM(valid_display_count)*100,'%')  ctr,
+    SUM(display_count) display_count,SUM(valid_display_count) valid_display_count,SUM(loading_page_pv) loading_page_pv,
+    SUM(loading_page_uv) loading_page_uv,ad_id
+    FROM plan_report
+    WHERE  ad_id=#{adId} GROUP BY DATE_FORMAT(stat_date,'%Y-%m-%d')
+  </select>
+
+  <insert id="insert" parameterType="dba.model.PlanReport">
+    insert into plan_report (id, ad_id, ad_type, 
+      ad_name, config_location, actual_location, 
+      stat_date, click, pv, 
+      ctr, gmt_create, gmt_modify, 
+      plan_id, display_count, valid_display_count, 
+      loading_page_pv, loading_page_uv)
+    values (#{id,jdbcType=BIGINT}, #{adId,jdbcType=BIGINT}, #{adType,jdbcType=BIGINT}, 
+      #{adName,jdbcType=VARCHAR}, #{configLocation,jdbcType=VARCHAR}, #{actualLocation,jdbcType=VARCHAR}, 
+      #{statDate,jdbcType=VARCHAR}, #{click,jdbcType=BIGINT}, #{pv,jdbcType=BIGINT}, 
+      #{ctr,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, 
+      #{planId,jdbcType=BIGINT}, #{displayCount,jdbcType=BIGINT}, #{validDisplayCount,jdbcType=BIGINT}, 
+      #{loadingPagePv,jdbcType=BIGINT}, #{loadingPageUv,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="dba.model.PlanReport">
+    insert into plan_report
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="adId != null">
+        ad_id,
+      </if>
+      <if test="adType != null">
+        ad_type,
+      </if>
+      <if test="adName != null">
+        ad_name,
+      </if>
+      <if test="configLocation != null">
+        config_location,
+      </if>
+      <if test="actualLocation != null">
+        actual_location,
+      </if>
+      <if test="statDate != null">
+        stat_date,
+      </if>
+      <if test="click != null">
+        click,
+      </if>
+      <if test="pv != null">
+        pv,
+      </if>
+      <if test="ctr != null">
+        ctr,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModify != null">
+        gmt_modify,
+      </if>
+      <if test="planId != null">
+        plan_id,
+      </if>
+      <if test="displayCount != null">
+        display_count,
+      </if>
+      <if test="validDisplayCount != null">
+        valid_display_count,
+      </if>
+      <if test="loadingPagePv != null">
+        loading_page_pv,
+      </if>
+      <if test="loadingPageUv != null">
+        loading_page_uv,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="adId != null">
+        #{adId,jdbcType=BIGINT},
+      </if>
+      <if test="adType != null">
+        #{adType,jdbcType=BIGINT},
+      </if>
+      <if test="adName != null">
+        #{adName,jdbcType=VARCHAR},
+      </if>
+      <if test="configLocation != null">
+        #{configLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="actualLocation != null">
+        #{actualLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="statDate != null">
+        #{statDate,jdbcType=VARCHAR},
+      </if>
+      <if test="click != null">
+        #{click,jdbcType=BIGINT},
+      </if>
+      <if test="pv != null">
+        #{pv,jdbcType=BIGINT},
+      </if>
+      <if test="ctr != null">
+        #{ctr,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null">
+        #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planId != null">
+        #{planId,jdbcType=BIGINT},
+      </if>
+      <if test="displayCount != null">
+        #{displayCount,jdbcType=BIGINT},
+      </if>
+      <if test="validDisplayCount != null">
+        #{validDisplayCount,jdbcType=BIGINT},
+      </if>
+      <if test="loadingPagePv != null">
+        #{loadingPagePv,jdbcType=BIGINT},
+      </if>
+      <if test="loadingPageUv != null">
+        #{loadingPageUv,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+
+  <delete id="deleteLikeName">
+    delete from plan_report
+    where  ad_name like concat('%', #{name}, '%')
+  </delete>
+
+</mapper>

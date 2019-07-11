@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.PlanDateMapper">
+  <resultMap id="BaseResultMap" type="dba.model.PlanDate">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="plan_id" jdbcType="BIGINT" property="planId" />
+    <result column="start_time" jdbcType="DATE" property="startTime" />
+    <result column="end_time" jdbcType="DATE" property="endTime" />
+    <result column="week_delivery_mode" jdbcType="TINYINT" property="weekDeliveryMode" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, plan_id, start_time, end_time, week_delivery_mode, status, created_time, update_time
+  </sql>
+
+  <select id="selectByPlanId"   resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from plan_date
+    where plan_id = #{planId}
+  </select>
+
+
+  <delete id="deletePlanDateNotInPlan">
+    DELETE FROM plan_date
+    WHERE plan_id NOT IN (SELECT id FROM plan);
+  </delete>
+
+</mapper>

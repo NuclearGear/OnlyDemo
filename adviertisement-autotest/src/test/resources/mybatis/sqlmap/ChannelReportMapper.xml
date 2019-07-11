@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.ChannelReportMapper">
+  <resultMap id="BaseResultMap" type="dba.model.ChannelReport">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="stat_date" jdbcType="VARCHAR" property="statDate" />
+    <result column="channel_name" jdbcType="VARCHAR" property="channelName" />
+    <result column="booth_name" jdbcType="VARCHAR" property="boothName" />
+    <result column="display_count" jdbcType="INTEGER" property="displayCount" />
+    <result column="display_user_count" jdbcType="INTEGER" property="displayUserCount" />
+    <result column="valid_display_count" jdbcType="INTEGER" property="validDisplayCount" />
+    <result column="click_count" jdbcType="INTEGER" property="clickCount" />
+    <result column="click_user_count" jdbcType="INTEGER" property="clickUserCount" />
+    <result column="ctr" jdbcType="VARCHAR" property="ctr" />
+    <result column="cpm_price" jdbcType="DOUBLE" property="cpmPrice" />
+    <result column="cpc_price" jdbcType="DOUBLE" property="cpcPrice" />
+    <result column="put_price" jdbcType="DOUBLE" property="putPrice" />
+    <result column="plan_count" jdbcType="INTEGER" property="planCount" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, stat_date, channel_name, booth_name, display_count, display_user_count, valid_display_count, 
+    click_count, click_user_count, ctr, cpm_price, cpc_price, put_price, plan_count, 
+    type, gmt_create, gmt_modify
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from channel_report
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from channel_report
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="dba.model.ChannelReport">
+    insert into channel_report (id, stat_date, channel_name, 
+      booth_name, display_count, display_user_count, 
+      valid_display_count, click_count, click_user_count, 
+      ctr, cpm_price, cpc_price, 
+      put_price, plan_count, type, 
+      gmt_create, gmt_modify)
+    values (#{id,jdbcType=BIGINT}, #{statDate,jdbcType=VARCHAR}, #{channelName,jdbcType=VARCHAR}, 
+      #{boothName,jdbcType=VARCHAR}, #{displayCount,jdbcType=INTEGER}, #{displayUserCount,jdbcType=INTEGER}, 
+      #{validDisplayCount,jdbcType=INTEGER}, #{clickCount,jdbcType=INTEGER}, #{clickUserCount,jdbcType=INTEGER}, 
+      #{ctr,jdbcType=VARCHAR}, #{cpmPrice,jdbcType=DOUBLE}, #{cpcPrice,jdbcType=DOUBLE}, 
+      #{putPrice,jdbcType=DOUBLE}, #{planCount,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="dba.model.ChannelReport">
+    insert into channel_report
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="statDate != null">
+        stat_date,
+      </if>
+      <if test="channelName != null">
+        channel_name,
+      </if>
+      <if test="boothName != null">
+        booth_name,
+      </if>
+      <if test="displayCount != null">
+        display_count,
+      </if>
+      <if test="displayUserCount != null">
+        display_user_count,
+      </if>
+      <if test="validDisplayCount != null">
+        valid_display_count,
+      </if>
+      <if test="clickCount != null">
+        click_count,
+      </if>
+      <if test="clickUserCount != null">
+        click_user_count,
+      </if>
+      <if test="ctr != null">
+        ctr,
+      </if>
+      <if test="cpmPrice != null">
+        cpm_price,
+      </if>
+      <if test="cpcPrice != null">
+        cpc_price,
+      </if>
+      <if test="putPrice != null">
+        put_price,
+      </if>
+      <if test="planCount != null">
+        plan_count,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModify != null">
+        gmt_modify,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="statDate != null">
+        #{statDate,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null">
+        #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="boothName != null">
+        #{boothName,jdbcType=VARCHAR},
+      </if>
+      <if test="displayCount != null">
+        #{displayCount,jdbcType=INTEGER},
+      </if>
+      <if test="displayUserCount != null">
+        #{displayUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="validDisplayCount != null">
+        #{validDisplayCount,jdbcType=INTEGER},
+      </if>
+      <if test="clickCount != null">
+        #{clickCount,jdbcType=INTEGER},
+      </if>
+      <if test="clickUserCount != null">
+        #{clickUserCount,jdbcType=INTEGER},
+      </if>
+      <if test="ctr != null">
+        #{ctr,jdbcType=VARCHAR},
+      </if>
+      <if test="cpmPrice != null">
+        #{cpmPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="cpcPrice != null">
+        #{cpcPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="putPrice != null">
+        #{putPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="planCount != null">
+        #{planCount,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null">
+        #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <delete id="deleteLikeBoothName">
+    delete from plan_report
+    where  booth_name like concat('%', #{boothName}, '%')
+  </delete>
+
+
+</mapper>

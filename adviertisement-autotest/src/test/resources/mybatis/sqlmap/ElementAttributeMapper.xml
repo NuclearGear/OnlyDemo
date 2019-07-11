@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.ElementAttributeMapper">
+  <resultMap id="BaseResultMap" type="dba.model.ElementAttribute">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="element_id" jdbcType="BIGINT" property="elementId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, name, value, element_id
+  </sql>
+
+  <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from element_attribute
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+
+  <select id="selectByEleId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from element_attribute
+    where element_id = #{eleId}
+  </select>
+
+
+  <select id="selectByEleIdAndType"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from element_attribute
+    where element_id = #{eleId} and type=#{type}
+  </select>
+
+
+  <delete id="deleteElementAttributeNotInElement">
+    DELETE FROM element_attribute
+    WHERE element_id NOT IN (SELECT id FROM template_element);
+  </delete>
+
+
+</mapper>

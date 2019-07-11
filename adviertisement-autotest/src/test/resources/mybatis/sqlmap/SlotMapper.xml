@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.SlotMapper">
+  <resultMap id="BaseResultMap" type="dba.model.Slot">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="sell_id" jdbcType="BIGINT" property="sellId" />
+    <result column="platform" jdbcType="BIT" property="platform" />
+    <result column="slot_id" jdbcType="VARCHAR" property="slotId" />
+    <result column="size" jdbcType="VARCHAR" property="size" />
+    <result column="template_id" jdbcType="BIGINT" property="templateId" />
+    <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, sell_id, platform, slot_id, size, template_id, gmt_created, gmt_modified
+  </sql>
+  <select id="selectBySellId"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from slot
+    where sell_id = #{sellId}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from slot
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+</mapper>

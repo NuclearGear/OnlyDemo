@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.ChannelMapper">
+  <resultMap id="BaseResultMap" type="dba.model.Channel">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="id_wrapper" jdbcType="VARCHAR" property="idWrapper" />
+    <result column="flow_flag" jdbcType="INTEGER" property="flowFlag" />
+    <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, type, name, operator, id_wrapper, flow_flag, gmt_created, gmt_modify
+  </sql>
+
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from channel
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+
+  <select id="getChannelsCount" resultType="java.lang.Integer">
+    select count(*)
+    from channel where 1=1
+    <if test="name != null and name != '' "> and  name like concat('%', #{name}, '%')</if>
+    <if test="id > 0"> and  id = #{id} </if>
+  </select>
+
+  <select id="getChannelsWithPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from channel  where 1=1
+    <if test="id > 0"> and  id = #{id} </if>
+    <if test="name != null and name != '' "> and  name like concat('%', #{name}, '%')</if>
+    order by id desc limit #{size} offset #{crrentPage};
+  </select>
+
+
+
+  <delete id="deleteLikeName">
+    delete from channel
+    where  name like concat('%', #{name}, '%')
+  </delete>
+
+
+</mapper>

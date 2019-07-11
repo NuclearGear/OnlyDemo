@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.MaterialElementMapper">
+  <resultMap id="BaseResultMap" type="dba.model.MaterialElement">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="material_id" jdbcType="BIGINT" property="materialId" />
+    <result column="type" jdbcType="TINYINT" property="type" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="width" jdbcType="INTEGER" property="width" />
+    <result column="height" jdbcType="INTEGER" property="height" />
+    <result column="duration" jdbcType="INTEGER" property="duration" />
+    <result column="allowed_operation" jdbcType="INTEGER" property="allowedOperation" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, material_id, type, url, width, height, duration, allowed_operation
+  </sql>
+
+  <select id="selectByMaterialIdType"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from material_element
+    where material_id = #{materialId} and type=#{type};
+  </select>
+
+
+
+
+  <delete id="deleteRelationNotInMaterial">
+    DELETE FROM material_element
+    WHERE  material_id NOT IN (SELECT id FROM material);
+  </delete>
+
+</mapper>

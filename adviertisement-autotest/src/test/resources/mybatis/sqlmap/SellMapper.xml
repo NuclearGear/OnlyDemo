@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.SellMapper">
+  <resultMap id="BaseResultMap" type="dba.model.Sell">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="channel_id" jdbcType="BIGINT" property="channelId" />
+    <result column="throughput" jdbcType="BIGINT" property="throughput" />
+    <result column="sell_type" jdbcType="TINYINT" property="sellType" />
+    <result column="cash_type" jdbcType="TINYINT" property="cashType" />
+    <result column="price" jdbcType="BIGINT" property="price" />
+    <result column="ios_slot_id" jdbcType="BIGINT" property="iosSlotId" />
+    <result column="slot_type" jdbcType="TINYINT" property="slotType" />
+    <result column="creative_type" jdbcType="TINYINT" property="creativeType" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
+    <result column="android_slot_id" jdbcType="BIGINT" property="androidSlotId" />
+    <result column="ios_slot" jdbcType="VARCHAR" property="iosSlot" />
+    <result column="android_slot" jdbcType="VARCHAR" property="androidSlot" />
+    <result column="frame_num" jdbcType="TINYINT" property="frameNum" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="android_price" jdbcType="INTEGER" property="androidPrice" />
+    <result column="ios_price" jdbcType="INTEGER" property="iosPrice" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, channel_id, throughput, sell_type, cash_type, price, ios_slot_id, slot_type, 
+    creative_type, gmt_create, gmt_modify, android_slot_id, ios_slot, android_slot, frame_num, 
+    status, android_price, ios_price
+  </sql>
+  <select id="selectById" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sell
+    where id = #{id}
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from sell
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+</mapper>

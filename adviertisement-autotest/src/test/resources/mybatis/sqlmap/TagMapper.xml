@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.TagMapper">
+  <resultMap id="BaseResultMap" type="dba.model.Tag">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
+    <result column="parent_id" jdbcType="BIGINT" property="parentId" />
+    <result column="level" jdbcType="TINYINT" property="level" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, gmt_create, gmt_modify, parent_id, level
+  </sql>
+
+
+  <select id="selectById" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tag
+    where id = #{id}
+  </select>
+
+
+  <select id="selectDepTags" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tag
+    where parent_id=62  GROUP BY NAME ORDER BY LEVEL DESC LIMIT 20;
+  </select>
+
+  <select id="selectKeyByMaterialId" resultMap="BaseResultMap">
+    select
+    t.id,  t.name,  t.gmt_create,  t.gmt_modify,  t.parent_id,  t.level
+    from tag_material_relation tmr left join tag t on tmr.tag_id=t.id
+    where tmr.tag_type=100 and tmr.material_id= #{material_id}
+  </select>
+
+
+  <select id="selectUsefulTags" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    FROM
+    yacht.`tag` GROUP BY NAME HAVING COUNT(*)=1 UNION ALL
+    SELECT * FROM
+    yacht.`tag` GROUP BY NAME HAVING COUNT(*)>1 AND LEVEL=2
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tag
+    where id = #{id}
+  </delete>
+
+
+</mapper>

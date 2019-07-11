@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.PlanItemMapper">
+  <resultMap id="BaseResultMap" type="dba.model.PlanItem">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="plan_id" jdbcType="BIGINT" property="planId" />
+    <result column="spuid" jdbcType="BIGINT" property="spuid" />
+    <result column="seller_id" jdbcType="BIGINT" property="sellerId" />
+    <result column="seller_name" jdbcType="VARCHAR" property="sellerName" />
+    <result column="category_id" jdbcType="BIGINT" property="categoryId" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
+    <result column="item_name" jdbcType="VARCHAR" property="itemName" />
+    <result column="brokerage_ratio" jdbcType="INTEGER" property="brokerageRatio" />
+    <result column="price" jdbcType="BIGINT" property="price" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="is_choice" jdbcType="INTEGER" property="isChoice" />
+    <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="version" jdbcType="BIGINT" property="version" />
+    <result column="profit_share" jdbcType="BIGINT" property="profitShare" />
+    <result column="inventory" jdbcType="INTEGER" property="inventory" />
+    <result column="profit_id" jdbcType="INTEGER" property="profitId" />
+    <result column="flag" jdbcType="TINYINT" property="flag" />
+    <result column="picture" jdbcType="VARCHAR" property="picture" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List">
+    id, plan_id, spuid, seller_id, seller_name, category_id, category_name, item_name, 
+    brokerage_ratio, price, status, is_choice, gmt_created, gmt_modified, version, profit_share, 
+    inventory, profit_id, flag, picture
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from plan_item
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectByAnchorId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    SELECT
+    p.id, p.plan_id, p.spuid, p.seller_id, p.seller_name,p.category_id, p.category_name, p.item_name,
+    p.brokerage_ratio, p.price, p.status, p.is_choice, p.gmt_created, p.gmt_modified, p.version, p.profit_share,
+    p.inventory, p.profit_id, p.flag, p.picture
+    FROM plan_item p
+    LEFT JOIN anchor_selected_item a
+    ON a.plan_item_id=p.id
+    WHERE p.`status`=1 AND a.user_id=#{anchorId,jdbcType=BIGINT} ;
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from plan_item
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="dba.model.PlanItem">
+    insert into plan_item (id, plan_id, spuid, 
+      seller_id, seller_name, category_id, 
+      category_name, item_name, brokerage_ratio, 
+      price, status, is_choice, 
+      gmt_created, gmt_modified, version, 
+      profit_share, inventory, profit_id, 
+      flag, picture)
+    values (#{id,jdbcType=BIGINT}, #{planId,jdbcType=BIGINT}, #{spuid,jdbcType=BIGINT}, 
+      #{sellerId,jdbcType=BIGINT}, #{sellerName,jdbcType=VARCHAR}, #{categoryId,jdbcType=BIGINT}, 
+      #{categoryName,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, #{brokerageRatio,jdbcType=INTEGER}, 
+      #{price,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, #{isChoice,jdbcType=INTEGER}, 
+      #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{version,jdbcType=BIGINT}, 
+      #{profitShare,jdbcType=BIGINT}, #{inventory,jdbcType=INTEGER}, #{profitId,jdbcType=INTEGER}, 
+      #{flag,jdbcType=TINYINT}, #{picture,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="dba.model.PlanItem">
+    insert into plan_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="planId != null">
+        plan_id,
+      </if>
+      <if test="spuid != null">
+        spuid,
+      </if>
+      <if test="sellerId != null">
+        seller_id,
+      </if>
+      <if test="sellerName != null">
+        seller_name,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="categoryName != null">
+        category_name,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="brokerageRatio != null">
+        brokerage_ratio,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="isChoice != null">
+        is_choice,
+      </if>
+      <if test="gmtCreated != null">
+        gmt_created,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="profitShare != null">
+        profit_share,
+      </if>
+      <if test="inventory != null">
+        inventory,
+      </if>
+      <if test="profitId != null">
+        profit_id,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="picture != null">
+        picture,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="planId != null">
+        #{planId,jdbcType=BIGINT},
+      </if>
+      <if test="spuid != null">
+        #{spuid,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null">
+        #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerName != null">
+        #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="categoryName != null">
+        #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerageRatio != null">
+        #{brokerageRatio,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isChoice != null">
+        #{isChoice,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreated != null">
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=BIGINT},
+      </if>
+      <if test="profitShare != null">
+        #{profitShare,jdbcType=BIGINT},
+      </if>
+      <if test="inventory != null">
+        #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="profitId != null">
+        #{profitId,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=TINYINT},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="dba.model.PlanItem">
+    update plan_item
+    <set>
+      <if test="planId != null">
+        plan_id = #{planId,jdbcType=BIGINT},
+      </if>
+      <if test="spuid != null">
+        spuid = #{spuid,jdbcType=BIGINT},
+      </if>
+      <if test="sellerId != null">
+        seller_id = #{sellerId,jdbcType=BIGINT},
+      </if>
+      <if test="sellerName != null">
+        seller_name = #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=BIGINT},
+      </if>
+      <if test="categoryName != null">
+        category_name = #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="brokerageRatio != null">
+        brokerage_ratio = #{brokerageRatio,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="isChoice != null">
+        is_choice = #{isChoice,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreated != null">
+        gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=BIGINT},
+      </if>
+      <if test="profitShare != null">
+        profit_share = #{profitShare,jdbcType=BIGINT},
+      </if>
+      <if test="inventory != null">
+        inventory = #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="profitId != null">
+        profit_id = #{profitId,jdbcType=INTEGER},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=TINYINT},
+      </if>
+      <if test="picture != null">
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="dba.model.PlanItem">
+    update plan_item
+    set plan_id = #{planId,jdbcType=BIGINT},
+      spuid = #{spuid,jdbcType=BIGINT},
+      seller_id = #{sellerId,jdbcType=BIGINT},
+      seller_name = #{sellerName,jdbcType=VARCHAR},
+      category_id = #{categoryId,jdbcType=BIGINT},
+      category_name = #{categoryName,jdbcType=VARCHAR},
+      item_name = #{itemName,jdbcType=VARCHAR},
+      brokerage_ratio = #{brokerageRatio,jdbcType=INTEGER},
+      price = #{price,jdbcType=BIGINT},
+      status = #{status,jdbcType=TINYINT},
+      is_choice = #{isChoice,jdbcType=INTEGER},
+      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=BIGINT},
+      profit_share = #{profitShare,jdbcType=BIGINT},
+      inventory = #{inventory,jdbcType=INTEGER},
+      profit_id = #{profitId,jdbcType=INTEGER},
+      flag = #{flag,jdbcType=TINYINT},
+      picture = #{picture,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

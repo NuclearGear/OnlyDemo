@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.OwnerMapper">
+  <resultMap id="BaseResultMap" type="dba.model.Owner">
+    <id column="id"  property="id" />
+    <result column="name" property="name" />
+    <result column="full_name" jdbcType="VARCHAR" property="fullName" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="contact" jdbcType="VARCHAR" property="contact" />
+    <result column="type" jdbcType="BIGINT" property="type" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, full_name, address, contact, type, operator, gmt_created, gmt_modify
+  </sql>
+  <select id="selectById" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from owner
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectByName"   resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from owner
+    where name = #{name} order by gmt_modify desc  LIMIT 1;
+  </select>
+
+
+  <select id="selectLikeName"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from owner
+    where  name like concat('%', #{name}, '%')
+  </select>
+
+
+  <select id="getOwnersCount" resultType="java.lang.Integer">
+    select count(*)
+    from owner where 1=1
+    <if test="type > 0">and  type = #{type}</if>
+    <if test="name != null and name != '' "> and ( full_name like concat('%', #{name}, '%') or name like concat('%', #{name}, '%'))</if>
+  </select>
+
+  <select id="getOwnersCountByUid" resultType="java.lang.Integer">
+    select count(*)
+    from  user_ad_owner_relation uar LEFT JOIN owner ow ON uar.`ad_owner_id`=ow.`id`
+    where uid=#{uid}
+    <if test="type > 0">and  type = #{type}</if>
+    <if test="name != null and name != '' "> and ( full_name like concat('%', #{name}, '%') or name like concat('%', #{name}, '%'))</if>
+  </select>
+
+
+  <select id="getOwnersWithPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from owner  where 1=1
+    <if test="type > 0"> and  type = #{type} </if>
+    <if test="name != null and name != '' "> and ( full_name like concat('%', #{name}, '%') or name like concat('%', #{name}, '%'))</if>
+    order by id desc limit #{size} offset #{crrentPage};
+  </select>
+
+  <select id="getOwnersWithPageByUid"  resultMap="BaseResultMap">
+    select ow.id,ow.name, ow.full_name, ow.address, ow.contact, ow.type, ow.operator, ow.gmt_created, ow.gmt_modify
+    from  user_ad_owner_relation uar LEFT JOIN owner ow ON uar.`ad_owner_id`=ow.`id`
+    where uid=#{uid}
+    <if test="type > 0"> and  type = #{type} </if>
+    <if test="name != null and name != '' "> and ( full_name like concat('%', #{name}, '%') or name like concat('%', #{name}, '%'))</if>
+    order by id desc limit #{size} offset #{crrentPage};
+  </select>
+
+  <select id="getUidWithOwnerId" resultType="java.lang.String">
+    select uid
+    from   user_ad_owner_relation
+    where  ad_owner_id=#{OwnerId}
+  </select>
+
+
+  <delete id="deleteLikeName">
+    delete from owner
+    where  name like concat('%', #{name}, '%')
+  </delete>
+
+  <delete id="deleteUserAdOwnerRelationNotInOwner">
+   DELETE FROM user_ad_owner_relation
+   WHERE ad_owner_id NOT IN (SELECT id FROM owner);
+  </delete>
+
+
+</mapper>

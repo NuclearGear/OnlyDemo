@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.SpSwitchMapper">
+  <resultMap id="BaseResultMap" type="dba.model.SpSwitch">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="is_open" jdbcType="BIT" property="isOpen" />
+    <result column="link_url" jdbcType="VARCHAR" property="linkUrl" />
+    <result column="env" jdbcType="VARCHAR" property="env" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, is_open, link_url, env, gmt_create, gmt_modify
+  </sql>
+
+  <select id="selectByEnv"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sp_switch
+    where env = #{env}
+  </select>
+
+</mapper>

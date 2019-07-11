@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.AdMapper">
+  <resultMap id="BaseResultMap" type="dba.model.Ad">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="ad_name" jdbcType="VARCHAR" property="adName" />
+    <result column="ad_type" jdbcType="BIGINT" property="adType" />
+    <result column="owner_id" jdbcType="BIGINT" property="ownerId" />
+    <result column="status" jdbcType="BIGINT" property="status" />
+    <result column="start_time" jdbcType="BIGINT" property="startTime" />
+    <result column="end_time" jdbcType="BIGINT" property="endTime" />
+    <result column="duration" jdbcType="BIGINT" property="duration" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
+    <result column="ad_id_wrapper" jdbcType="VARCHAR" property="adIdWrapper" />
+    <result column="put_type" jdbcType="INTEGER" property="putType" />
+    <result column="owner_name" jdbcType="VARCHAR" property="ownerName" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="system" jdbcType="TINYINT" property="system" />
+    <result column="promotion" jdbcType="TINYINT" property="promotion" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, ad_name, ad_type, owner_id, status, start_time, end_time, duration, gmt_create, 
+    gmt_modify, ad_id_wrapper, put_type, owner_name, operator, system, promotion
+  </sql>
+
+  <sql id="whereAdQuery">
+    <if test="id != null and id > 0">and  ad.id = #{id}</if>
+    <if test="adName != null">and  ad.ad_name like CONCAT('%','${adName}','%' )</if>
+    <if test="adType != null and adType >= 0">and  ad.ad_type = #{adType}</if>
+    <if test="putType != null and putType >= 0">and  ad.put_type = #{putType}</if>
+    <if test="ownerId != null and ownerId > 0">and  ad.owner_id = #{ownerId}</if>
+    <if test="status != null and status > 0">and  ad.status = #{status}</if>
+    <if test="startTime != null">and  ad.start_time >= #{startTime}</if>
+    <if test="endTime != null">and  ad.end_time &lt;= #{endTime}</if>
+    <if test="duration != null">and  ad.duration = #{duration}</if>
+    <if test="adIdWrapper != null">and  ad.ad_id_wrapper = #{adIdWrapper}</if>
+    <if test="adOwnerId > 0">and  ad.owner_id = #{adOwnerId}</if>
+    <if test="uid != null">and  uar.uid = #{uid}</if>
+  </sql>
+
+
+  <select id="selectById"   resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ad
+    where  id = #{id}
+  </select>
+
+  <select id="selectByName"   resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ad
+    where  ad_name = #{name}
+  </select>
+
+  <select id="getAdsCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(*)
+    from ad
+    where 1=1
+    <if test="adType > 0"> and  ad_type = #{adType} </if>
+    <if test="advertiserId > 0"> and  owner_id = #{advertiserId} </if>
+    <if test="name != null and name != '' "> and  ad_name like concat('%', #{name}, '%')</if>
+    ;
+  </select>
+
+
+  <select id="getAdsCountByUid" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(*)
+    from ad LEFT JOIN  user_ad_owner_relation uar
+    ON ad.owner_id=uar.ad_owner_id
+    <where>
+      <include refid="whereAdQuery"/>
+    </where>
+    ;
+  </select>
+
+
+
+  <select id="selectByOwnerId"   resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ad
+    where owner_id = #{ownerId}
+  </select>
+
+
+  <select id="selectLikeAdName"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ad
+    where  ad_name like concat('%', #{adName}, '%')
+  </select>
+
+
+
+  <select id="getAdWithPage" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ad
+    where 1=1
+    <if test="adType > 0"> and  ad_type = #{adType} </if>
+    <if test="advertiserId > 0"> and  owner_id = #{advertiserId} </if>
+    <if test="name != null and name != '' "> and  ad_name like concat('%', #{name}, '%')</if>
+    order by id desc limit #{size} offset #{crrentPage};
+  </select>
+
+
+
+  <select id="getAdsWithPageByUid" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    ad.id, ad.ad_name, ad.ad_type, ad.owner_id, ad.status, ad.start_time, ad.end_time, ad.duration, ad.gmt_create,
+    ad.gmt_modify, ad.ad_id_wrapper, ad.put_type, ad.owner_name, ad.operator
+    from ad LEFT JOIN  user_ad_owner_relation AS uar
+    ON ad.owner_id=uar.ad_owner_id
+    <where>
+      <include refid="whereAdQuery"/>
+    </where>
+    order by gmt_modify desc limit #{size} offset #{crrentPage};
+  </select>
+
+
+  <delete id="deleteLikeName">
+    delete from ad
+    where  ad_name like concat('%', #{name}, '%')
+  </delete>
+
+
+  <delete id="deleteNullAdLikeName">
+    delete from ad
+    where  ad_name like concat('%', #{name}, '%')
+    and id not in (select ad_id from plan)
+  </delete>
+
+
+  <delete id="deleteAdNotInOwner">
+    DELETE FROM ad
+    WHERE owner_id NOT IN (SELECT id FROM owner);
+  </delete>
+
+</mapper>

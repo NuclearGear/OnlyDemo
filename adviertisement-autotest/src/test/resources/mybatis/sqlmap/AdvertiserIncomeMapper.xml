@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.AdvertiserIncomeMapper">
+  <resultMap id="BaseResultMap" type="dba.model.AdvertiserIncome">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="advertiser_id" jdbcType="BIGINT" property="advertiserId" />
+    <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
+    <result column="business" jdbcType="VARCHAR" property="business" />
+    <result column="activity_period_start" jdbcType="TIMESTAMP" property="activityPeriodStart" />
+    <result column="activity_period_end" jdbcType="TIMESTAMP" property="activityPeriodEnd" />
+    <result column="income" jdbcType="REAL" property="income" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="activity_comment" jdbcType="VARCHAR" property="activityComment" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, advertiser_id, activity_name, business, activity_period_start, activity_period_end, 
+    income, operator, activity_comment, update_time, created_time, status
+  </sql>
+
+  <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from advertiser_income
+    where id = #{id}
+  </select>
+
+
+  <select id="selectByName"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from advertiser_income
+    where activity_name = #{name}
+  </select>
+
+
+  <select id="getAdvertiserIncomeCount" resultType="int">
+    SELECT count(1)
+    FROM
+    advertiser_income
+    WHERE `status` = 0
+    AND   `advertiser_id` = #{id};
+  </select>
+
+
+  <select id="getIncomesWithPageByAdvId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from advertiser_income  where status=0
+    <if test="advertiserId > 0"> and  advertiser_id = #{advertiserId} </if>
+    order by id desc limit #{size} offset #{crrentPage};
+  </select>
+
+
+  <delete id="deleteLikeNameOrByAdvId">
+    delete from advertiser_income where 1=1
+    <if test="advertiserId > 0"> and  advertiser_id = #{advertiserId} </if>
+    <if test="name != null">and activity_name like concat('%', #{name}, '%')</if>
+  </delete>
+
+</mapper>

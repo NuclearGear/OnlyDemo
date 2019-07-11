@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.TargettingPlatformMapper">
+  <resultMap id="BaseResultMap" type="dba.model.TargettingPlatform">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="plan_id" jdbcType="BIGINT" property="planId" />
+    <result column="platform" jdbcType="INTEGER" property="platform" />
+    <result column="relation" jdbcType="TINYINT" property="relation" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, plan_id, platform, relation
+  </sql>
+
+  <select id="selectByPlanId"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from targetting_platform
+    where plan_id = #{planId}
+  </select>
+
+
+
+  <delete id="deleteTargettingPlatformNotInPlan" parameterType="java.lang.Long">
+    delete from targetting_platform
+    where plan_id not in (select id from plan);
+  </delete>
+
+
+</mapper>

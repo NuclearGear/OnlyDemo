@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dba.mapper.PlanMapper">
+    <resultMap id="BaseResultMap" type="dba.model.Plan">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="ad_id" jdbcType="BIGINT" property="adId"/>
+        <result column="material_id" jdbcType="BIGINT" property="materialId"/>
+        <result column="status" jdbcType="BIGINT" property="status"/>
+        <result column="frame_num" jdbcType="BIGINT" property="frameNum"/>
+        <result column="start_time" jdbcType="BIGINT" property="startTime"/>
+        <result column="end_time" jdbcType="BIGINT" property="endTime"/>
+        <result column="duration" jdbcType="BIGINT" property="duration"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify"/>
+        <result column="plan_id_wrapper" jdbcType="VARCHAR" property="planIdWrapper"/>
+        <result column="weight" jdbcType="INTEGER" property="weight"/>
+        <result column="sell_mode" jdbcType="TINYINT" property="sellMode"/>
+        <result column="sell_price" jdbcType="DOUBLE" property="sellPrice"/>
+        <result column="budget" jdbcType="DOUBLE" property="budget"/>
+        <result column="delivery_amount_flag" jdbcType="TINYINT" property="deliveryAmountFlag"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="commerce_ad_type" jdbcType="TINYINT" property="commerceAdType"/>
+        <result column="gender" jdbcType="TINYINT" property="gender"/>
+        <result column="matching_mode" jdbcType="TINYINT" property="matchingMode"/>
+        <result column="targetting_flag" jdbcType="TINYINT" property="targettingFlag"/>
+        <result column="owner_id" jdbcType="BIGINT" property="ownerId"/>
+        <result column="version" jdbcType="BIGINT" property="version"/>
+        <result column="state" jdbcType="BIGINT" property="state"/>
+        <result column="type" jdbcType="TINYINT" property="type" />
+        <result column="consumption" jdbcType="BIGINT" property="consumption" />
+        <result column="uniform_delivery_flag" jdbcType="INTEGER" property="uniformDeliveryFlag" />
+        <result column="platform_flag" jdbcType="INTEGER" property="platformFlag" />
+        <result column="group_id" property="groupId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, ad_id, material_id, status, frame_num, start_time, end_time, duration, gmt_create, 
+    gmt_modify, plan_id_wrapper, weight, sell_mode, sell_price, budget, delivery_amount_flag,
+    name, commerce_ad_type, gender, matching_mode, targetting_flag, owner_id, version,state, consumption, uniform_delivery_flag,platform_flag, is_delete,group_id
+  </sql>
+
+    <sql id="wherePlanQuery">
+        <if test="id != null">and `id` = #{id}</if>
+        <if test="adId != null">and `ad_id` = #{adId}</if>
+        <if test="materialId != null">and `material_id` = #{materialId}</if>
+        <if test="status != null">and `status` = #{status}</if>
+        <if test="frameNum != null">and `frame_num` = #{frameNum}</if>
+        <if test="startTime != null">and `start_time` = #{startTime}</if>
+        <if test="endTime != null">and `end_time` = #{endTime}</if>
+        <if test="duration != null">and `duration` = #{duration}</if>
+        <if test="planIdWrapper != null">and `plan_id_wrapper` = #{planIdWrapper}</if>
+
+    </sql>
+
+    <select id="selectById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from plan
+        where id = #{id}
+    </select>
+
+    <select id="selectLikeName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from plan
+        where  name like concat('%', #{name}, '%');
+    </select>
+
+    <select id="selectByName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from plan
+        where name = #{name} order by id desc limit 1
+    </select>
+
+    <select id="selectBymaterialId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from plan
+        where material_id = #{materialId}
+    </select>
+
+
+    <select id="selectByStatus" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from plan
+        where status = #{status}
+    </select>
+
+    <select id="selectByAdId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from plan
+        where ad_id = #{id} order BY gmt_create DESC
+    </select>
+
+
+    <select id="selectByBoothCodeAndStatus" resultMap="BaseResultMap">
+    SELECT p.id, p.ad_id, p.material_id, p.status, p.frame_num, p.start_time, p.end_time, p.duration, p.gmt_create,
+    p.gmt_modify, p.plan_id_wrapper, p.weight FROM yacht.`plan` p
+    LEFT JOIN yacht.`plan_booth_relation` pbr
+    ON p.`id`=pbr.`plan_id`
+    WHERE pbr.`booth_code`=#{boothCode} AND STATUS=#{status} order BY gmt_create DESC;
+  </select>
+
+
+
+    <select id="selectByBoothCodeAndFrameNum" resultMap="BaseResultMap">
+   SELECT p.id, p.ad_id, p.material_id, p.status, p.frame_num, p.start_time, p.end_time, p.duration, p.gmt_create,
+   p.gmt_modify, p.plan_id_wrapper, p.weight FROM plan_booth_relation pbr LEFT JOIN
+   plan p ON pbr.`plan_id`=p.`id`
+   WHERE   pbr.booth_code=#{boothCode}  AND p.`frame_num`=#{frameMum};
+   </select>
+
+
+    <select id="getPlansCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        select count(*)
+        from plan
+        <where>
+            <include refid="wherePlanQuery"/>
+        </where>
+        ;
+    </select>
+
+    <select id="getPlansWithPage" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from plan
+        <where>
+            <include refid="wherePlanQuery"/>
+        </where>
+        order by gmt_modify desc limit #{size} offset #{crrentPage};
+    </select>
+
+
+    <update id="updatePlanStatusById">
+    update plan
+    set state = #{status},status= #{status}
+    where id = #{id}
+  </update>
+
+
+    <delete id="deletePlanNotInAD">
+    DELETE FROM plan
+    WHERE ad_id NOT IN (SELECT id FROM ad) and type=0;;
+  </delete>
+
+
+    <delete id="deletePlanNotInPlanBoothRelation">
+    DELETE FROM plan
+    WHERE id NOT IN (SELECT plan_id FROM plan_booth_relation) and type=0;
+  </delete>
+
+
+    <delete id="deleteLikeName">
+        delete from plan
+        where  name like concat('%', #{name}, '%') and type=0;
+    </delete>
+
+
+</mapper>
