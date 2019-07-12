@@ -99,10 +99,12 @@ class nice():
                             print (name+i+"码闪购价格低于现货价格")
                             # sendqqemail.sendqqEmail(subject, content)
                             # x=False
+                        else:
+                            print(".", end='',flush=True)
             else:
                 print ("请求过期或失败")
         except Exception as e:
-            print(".",end="")
+            print("F", end='',flush=True)
         time.sleep(1)
 
 if __name__ == "__main__":
@@ -119,7 +121,7 @@ if __name__ == "__main__":
 
     n=nice()
     chajia=200
-    # n.getPrice(url, laomei, "老美限", chajia)
+    # n.getPrice(url, laomei, "美限", chajia)
     while(True):
         n.getPrice(url,heimanData,"黑满天星",2000)
         n.getPrice(url,hurenData,"湖人AJ",500)

@@ -15,7 +15,7 @@ def guzi_posttest(test_url,b=1,w=1,c=1):
         #print r.headers
         if r.status_code ==200:
             response=r.text
-            print response
+            print (response)
             if w==1:
                 try:
                     nurl = "".join(re.findall('''"nurl":"(.+?)"''', response))
@@ -24,12 +24,12 @@ def guzi_posttest(test_url,b=1,w=1,c=1):
                     win=nurl.replace("${AUCTION_PRICE_ENC}", apr)
                     #print win
                     winresponse = requests.get(win)
-                    print "win发送第"+str(i+1)+"次"+str(winresponse.status_code)+test_url
+                    print ("win发送第"+str(i+1)+"次"+str(winresponse.status_code)+test_url)
                     endtime = datetime.datetime.now()
-                    print endtime
+                    print (endtime)
                 except Exception as e:
                     endtime = datetime.datetime.now()
-                    print endtime
+                    print (endtime)
                     #print"未找到winnurl"+e
             if c ==1:
                 try:
@@ -39,17 +39,17 @@ def guzi_posttest(test_url,b=1,w=1,c=1):
                     clicknurl=clicknurl.replace('''\"https''', "http")
                     #print clicknurl
                     clickresponse = requests.get(clicknurl)
-                    print "click发送第"+str(i+1)+"次"+str(clickresponse.status_code)+test_url
+                    print ("click发送第"+str(i+1)+"次"+str(clickresponse.status_code)+test_url)
                     endtime = datetime.datetime.now()
-                    print endtime
+                    print (endtime)
                 except Exception as e:
                     endtime = datetime.datetime.now()
-                    print endtime
+                    print (endtime)
                     #print u"未找到clickurl"+e
         else:
-            print"请求失败%s"%test_url
+            print("请求失败%s"%test_url)
             endtime = datetime.datetime.now()
-            print endtime
+            print (endtime)
             #raise  Exception
 def DC_cache():
     dc_cache=requests.get(dc_cache_url)
@@ -66,8 +66,8 @@ def DC_cache():
     cache=collections.OrderedDict()
     cache=dict(zip(cachetitle,cachedata))
     for key in cache:
-        print key+":"+cache[key],
-    print ""
+        print (key+":"+cache[key],)
+    print ("")
     return cache
 
 def dctest(th):
@@ -78,7 +78,7 @@ def dctest(th):
     threads.append(t2)
     cache1=DC_cache()
     starttime = datetime.datetime.now()
-    print 'start:%s'%(starttime)
+    print ('start:%s'%(starttime))
     if th==2:
         for t in threads:
              t.setDaemon(True)
@@ -89,7 +89,7 @@ def dctest(th):
     else:
         raise Exception
     endtime = datetime.datetime.now()
-    print 'end:%s' %endtime
+    print ('end:%s' %endtime)
     time.sleep(5)
     cache2=DC_cache()
     m=int(cache2[u"请求数"])-int(cache1[u"请求数"])
@@ -101,16 +101,16 @@ def dctest(th):
             assert n==b*2
         if c==1:
             assert p==b*2
-        print "result:pass"
+        print ("result:pass")
     elif th==1:
         assert m==b
         if w==1:
             assert n==b
         if c==1:
             assert p==b
-        print "result:pass"
+        print ("result:pass")
     else:
-        print "error"
+        print ("error")
 if __name__ == "__main__":
     b=1
     w=1
