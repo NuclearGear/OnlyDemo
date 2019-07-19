@@ -4,14 +4,13 @@ import json
 import requests,datetime,time,threading,collections,re
 import smtplib
 from email.mime.text import MIMEText
+import datetime
+from nice_airtest import nice_airtest
 
-from nice_airtest import *
 
-
-def sendqqEmail(subject,content):
-    msg_from='1056396153@qq.com'                                 #发送方邮箱
-    passwd='ipegauclyoczbdde'                                   #填入发送方邮箱的授权码
-    msg_to='315118616@qq.com'                                  #收件人邮箱
+def sendqqEmail(subject,content,msg_to='315118616@qq.com'):    #收件人邮箱
+    msg_from='1056396153@qq.com'                               #发送方邮箱
+    passwd='ipegauclyoczbdde'                                  #填入发送方邮箱的授权码
 
     msg = MIMEText(content)
     msg['Subject'] = subject
@@ -27,6 +26,18 @@ def sendqqEmail(subject,content):
         pass
     finally:
         s.quit()
+
+def judgeTime(startTime,endTime):
+    # 范围时间
+    d_time = datetime.datetime.strptime(str(datetime.datetime.now().date()) + startTime, '%Y-%m-%d%H:%M')
+    d_time1 = datetime.datetime.strptime(str(datetime.datetime.now().date()) + endTime, '%Y-%m-%d%H:%M')
+    # 当前时间
+    n_time = datetime.datetime.now()
+    # 判断当前时间是否在范围时间内
+    if n_time > d_time and n_time < d_time1:
+        return True
+    else:
+        return False
 
 def output_value(jsons, key):
     """
@@ -59,24 +70,22 @@ class nice():
             "Accept": "*/*",
             "Accept-Encoding": "gzip, deflate",
             "Accept-Language": "zh-Hans-CN;q=1, ja-JP;q=0.9",
-            "Accept-Encoding": "gzip, deflate",
             "User-Agent": "KKShopping/5.4.2 (iPhone 8; iOS 12.3.1; Scale/2.00)"
         }
         try:
-            r = requests.post(url,headers=h,data=data,verify=False,timeout=1)
+            r = requests.post(url,headers=h,data=data,verify=False,timeout=2)
+            # response = r.text
+            # print (response)
             return r
         except:
             return False
 
-
-
-
-    def calculatePrice(self,response,name,fullname,chajia):
+    def calculatePrice(self,response,name,chajia):
         try:
             if(response.status_code==200):
                 response=r.text
                 # print (response)
-                # print type(response)
+                # print (type(response))
                 d = json.loads(response,encoding='utf-8')
                 # print (d)
                 xianhuo={}
@@ -92,7 +101,7 @@ class nice():
                         shangou[size]=price
                 # print "现货"+str(xianhuo)
                 # print "闪购"+str(shangou)
-                print("."),
+                print(".", end='',flush=True)
                 for i in shangou:
                     # print i
                     if i in xianhuo:
@@ -102,26 +111,26 @@ class nice():
                             subject=name+i+"码闪购价格低于现货价格"+str(price1-price2)+"元,现货价格:"+str(price1)+"元,闪购价格:"+str(price2)
                             content="现货价格:"+str(price1)+"元,闪购价格:"+str(price2)+"\n低"+str(price1-price2)+"元，请速查看app"
                             sendqqEmail(subject, content)
-                            print ("-----------------------"+name+i+"码闪购价格低于现货价格"+str(price1-price2)+"元,现货价格:"+str(price1)+"元,闪购价格:"+str(price2)+"-----------------------")
+                            print ("\n-----------------------"+name+i+"码闪购价格低于现货价格"+str(price1-price2)+"元,现货价格:"+str(price1)+"元,闪购价格:"+str(price2)+"-----------------------\n")
                             #启动airtest购物商品
+                            sendqqEmail(subject, content,"18964698690@163.com")
                             at=nice_airtest()
-                            at.buy(fullname,i,price2)
+                            at.buy(name,i,price2)
                         elif(chajia==0 and price1>price2):
                             subject=name+i+"码闪购价格低于现货价格"
                             content="现货价格:"+str(price1)+"元,闪购价格:"+str(price2)
                             print (name+i+"码闪购价格低于现货价格")
                             # sendqqemail.sendqqEmail(subject, content)
-
                         # else:
-                        #     # print(".", end='',flush=True)
+                        #     print(".", end='',flush=True)
                         #     print("."),
             elif(r==False):
                 print("F"),
             else:
                 print ("请求过期或失败")
         except Exception as e:
-            # print("F", end='',flush=True)
-            print("F"),
+            print("F", end='',flush=True)
+            # print("F"),
         time.sleep(0.5)
 
 if __name__ == "__main__":
@@ -135,41 +144,37 @@ if __name__ == "__main__":
     baiyeezy='''nice-sign-v1://143437650dddbf82e02c31421c8a7a06:295eb0e4161c9013/{"id":"1183","token":"G4eWahyWI3XU4JwHgsX5PITkAsHGK5F0"}'''
     laomei='''nice-sign-v1://067fabde15d257e5e94a55a0eabd8223:58637c96cc13ac3a/{"id":"99674","token":"wn-GBGsbbwxESEJvSly_PX-Mmk89ZYUn"}'''
     fentianshi='''nice-sign-v1://9cb41e1db0e266d28cc6f4e8e32826c1:8dd9ef08d30b7e9d/{"id":"199600","token":"wn-GBGsbbwxESEJvSly_PX-Mmk89ZYUn"}'''
-    fentianshifullname='''YEEZY BOOST 350 V2 2019年版 "SYNTH" 粉天使 亚洲限定'''
-    heiyeezyfullname='''YEEZY BOOST 350 V2 2019年版 "BLACK" 黑天使 黑魂'''
-    laomeifullname='''YEEZY BOOST 350 V2 2019年版 "CLAY" 粘土 美洲限定'''
-    heimanfullname='''YEEZY BOOST 350 V2 2019年版 "BLACK REFLECTIVE" 黑满天星'''
-    offwhitebeikafullname='''OFF-WHITE x AIR JORDAN 1 联名 2018年版 "北卡蓝"'''
-    baiyeezyfullname='''YEEZY BOOST 350 V2 "CREAM WHITE" 白冰淇淋'''
-    hurenfullname='''NIKE SB x AIR JORDAN 1 联名 2019年版 "LA TO CHICAGO" 湖人 芝加哥 刮刮乐'''
-    daogoufullname='''TRAVIS SCOTT x AIR JORDAN 1 联名 "CACTUS JACK" 2018年版 反钩 倒钩'''
+
     n=nice()
-    chajia=250
+    chajia=200
     # r=n.getPrice(url, laomei)
-    # n.calculatePrice(r,"美限",laomeifullname,chajia)
-    while(True):
-        r=n.getPrice(url,heimanData)
-        n.calculatePrice(r,"黑满天星",heimanfullname,1000)
+    # n.calculatePrice(r,"美洲限定"chajia)
+    while (True):
+        X=judgeTime("07:20", "23:59")
+        if(X):
+            while(judgeTime("07:20", "23:59")):
+                r=n.getPrice(url,heimanData)
+                n.calculatePrice(r,"黑满天星",1000)
 
-        r=n.getPrice(url,daogouData)
-        n.calculatePrice(r,"倒钩",daogoufullname,1500)
+                r=n.getPrice(url,daogouData)
+                n.calculatePrice(r,"倒钩",2000)
 
-        r=n.getPrice(url,offwhitebeika)
-        n.calculatePrice(r,"offwhite北卡蓝",offwhitebeikafullname,1000)
+                r=n.getPrice(url,offwhitebeika)
+                n.calculatePrice(r,"北卡蓝",1500)
 
-        r=n.getPrice(url,hurenData)
-        n.calculatePrice(r,"湖人AJ",hurenfullname,300)
+                r=n.getPrice(url,hurenData)
+                n.calculatePrice(r,"湖人",500)
 
-        r=n.getPrice(url,heiyeezyData)
-        n.calculatePrice(r,"黑天使",heiyeezyfullname,chajia)
+                r=n.getPrice(url,heiyeezyData)
+                n.calculatePrice(r,"黑天使",400)
 
-        r=n.getPrice(url, fentianshi)
-        n.calculatePrice(r,"粉天使",fentianshifullname,chajia)
+                r=n.getPrice(url, fentianshi)
+                n.calculatePrice(r,"粉天使",chajia)
 
-        r=n.getPrice(url,baiyeezy)
-        n.calculatePrice(r,"白椰子",baiyeezyfullname,chajia)
+                r=n.getPrice(url,baiyeezy)
+                n.calculatePrice(r,"白冰激凌",chajia)
 
-        r=n.getPrice(url, laomei)
-        n.calculatePrice(r,"美限",laomeifullname,chajia)
+                r=n.getPrice(url, laomei)
+                n.calculatePrice(r,"美洲限定",chajia)
 
-        time.sleep(2)
+                time.sleep(3)

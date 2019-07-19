@@ -11,7 +11,7 @@ from selenium.common.exceptions import *
 from selenium.webdriver.support.wait import WebDriverWait
 import exceltest
 import sys
-reload(sys)
+# reload(sys)
 sys.setdefaultencoding('utf-8')
 sys.path.append("..")
 
@@ -52,7 +52,7 @@ class qqemailtest(unittest.TestCase):
         except TimeoutException:
             dengluemail=self.driver.find_element_by_id("useraddr").text
             self.assertEqual(dengluemail,username)
-            print dengluemail+u"登录成功!"
+            print (dengluemail+u"登录成功!")
             return True
 
 
@@ -102,12 +102,12 @@ class qqemailtest(unittest.TestCase):
         if dengluresult ==True:
             result=self.sendqqemail(data["to"],data["theme"],data["body"])
             self.assertEqual("您的邮件已发送",result)
-            print u"发送邮件成功"
+            print ("发送邮件成功")
         else:
             if dengluresult in ["你还没有输入密码！","你还没有输入帐号！","你输入的帐号或密码不正确，请重新输入。"]:
                 print ("校验成功")
             else:
-                print dengluresult
+                print (dengluresult)
                 raise Exception("case失败")
 
 
