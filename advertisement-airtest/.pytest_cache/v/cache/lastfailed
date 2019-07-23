@@ -1,0 +1,4 @@
+{
+  "myRunner.py::AirtestCase::runTest": true,
+  "myRunner.py::CustomAirtestCase::runTest": true
+}

@@ -1,0 +1,4 @@
+[
+  "myRunner.py::CustomAirtestCase::runTest",
+  "myRunner.py::AirtestCase::runTest"
+]

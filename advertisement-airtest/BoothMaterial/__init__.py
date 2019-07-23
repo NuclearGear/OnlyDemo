@@ -1,5 +1,5 @@
 ﻿# -*- coding: utf-8 -*-
-__author__ = "无声"
+__author__ = "Only"
 
 import  os,inspect
 
