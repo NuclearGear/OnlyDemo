@@ -2,31 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eafa3306-c840-4e99-a835-6339a6479473" name="Default" comment="test">
-      <change afterPath="$PROJECT_DIR$/../advertisement-airtest/Api/PlanHelper.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../advertisement-airtest/Api/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../advertisement-airtest/BoothMaterial/BoothMaterial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../advertisement-airtest/BoothMaterial/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../advertisement-airtest/BoothMaterial/baiduLandingPage.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../advertisement-airtest/Common/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/.idea/.name" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/.idea/DreamMultiDevices.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/.idea/encodings.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/07102012_1115fb514ad60b05_log.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/07102013_1115fb514ad60b05_log.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/07111448_1115fb514ad60b05_log.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/07111452_1115fb514ad60b05_log.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/07111527_1115fb514ad60b05_log.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/07111629_1115fb514ad60b05_log.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/07112032_1115fb514ad60b05_log.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/07112038_1115fb514ad60b05_log.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/Apk/personaldoc_16571_6_12_0_test_41_health.apk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/Common/Common.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/Common/inputPhoneNum.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/Common/tpl1538099999968.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/Common/tpl1538100033683.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/Common/tpl1538104454078.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/Common/tpl1548062898797.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/Performance.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/Poco使用手册（持续编写中）.docx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/Report/1115fb514ad60b05_report.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/TestCase/TC_101.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/TestCase/TC_102.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/TestCase/TC_103.py" beforeDir="false" />
@@ -38,7 +29,6 @@
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/core/RunTestCase.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/core/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/core/index.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/img/test.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/start.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/template/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/template/highcharts.js" beforeDir="false" />
@@ -50,14 +40,16 @@
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/tools/Init_MiniCap.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/tools/Screencap.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/tools/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/helloWorld.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/helloWorld.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testpython/LoggingTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/testpython/LoggingTest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/testpython/nice.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/testpython/nice.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/testpython/nice_airtest.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/testpython/nice_airtest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testpython/qq_email.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/testpython/qq_email.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/testpython/sendqqEmail.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/testpython/sendqqEmail.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../advertisement-airtest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../advertisement-airtest/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../advertisement-airtest/BoothMaterial/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../advertisement-airtest/BoothMaterial/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../advertisement-airtest/Common/Common.py" beforeDir="false" afterPath="$PROJECT_DIR$/../advertisement-airtest/Common/Common.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../advertisement-airtest/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../advertisement-airtest/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../advertisement-airtest/Report/82f89b517d83_report.html" beforeDir="false" afterPath="$PROJECT_DIR$/../advertisement-airtest/Report/82f89b517d83_report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../advertisement-airtest/Report/Screen/顶通健康面落地页.png" beforeDir="false" afterPath="$PROJECT_DIR$/../advertisement-airtest/Report/Screen/顶通健康面落地页.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../advertisement-airtest/TestCase/TC_101.py" beforeDir="false" afterPath="$PROJECT_DIR$/../advertisement-airtest/TestCase/TC_101.py" afterDir="false" />
     </list>
     <ignored path="helloWorld.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -101,13 +93,16 @@
       <file leaf-file-name="nice.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/testpython/nice.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="175" lean-forward="true" selection-start-line="175" selection-end-line="175" />
+            <state relative-caret-position="2108">
+              <caret line="243" column="5" lean-forward="true" selection-start-line="243" selection-start-column="5" selection-end-line="243" selection-end-column="5" />
               <folding>
                 <element signature="e#15#26#0" expanded="true" />
                 <element signature="e#268#836#0" />
                 <element signature="e#872#1254#0" />
+                <element signature="e#1290#1821#0" />
                 <element signature="e#1878#2599#0" />
+                <element signature="e#2509#5614#0" />
+                <element signature="e#5662#5893#0" />
               </folding>
             </state>
           </provider>
@@ -116,8 +111,8 @@
       <file leaf-file-name="nice_airtest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/testpython/nice_airtest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="112" column="19" selection-start-line="112" selection-start-column="19" selection-end-line="112" selection-end-column="19" />
+            <state relative-caret-position="-1081">
+              <caret line="69" column="8" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="8" />
               <folding>
                 <element signature="e#25#55#0" expanded="true" />
                 <element signature="e#306#922#0" />
@@ -140,6 +135,7 @@
     <findStrings>
       <find>print</find>
       <find>debug</find>
+      <find>list</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -179,7 +175,7 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
@@ -260,7 +256,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="D:\nodejs\node.exe" />
-    <property name="last_opened_file_path" value="D:/GIT/DreamMultiDevices" />
+    <property name="last_opened_file_path" value="D:/OnlyGit/airtest_project" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -341,7 +337,7 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="nice" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="nice" type="PythonConfigurationType" factoryName="Python">
       <module name="helloWorld" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -546,15 +542,14 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <list>
-      <item itemvalue="Python.nice-airtest" />
-      <item itemvalue="Python.nice_airtest" />
       <item itemvalue="Python.nice" />
       <item itemvalue="Python.LoggingTest" />
       <item itemvalue="Python.sendqqEmail" />
+      <item itemvalue="Python.nice-airtest" />
+      <item itemvalue="Python.nice_airtest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.nice" />
         <item itemvalue="Python.nice-airtest" />
         <item itemvalue="Python.sendqqEmail" />
         <item itemvalue="Python.LoggingTest" />
@@ -623,19 +618,18 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.375" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.375" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32838285" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5841584" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5429043" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.38778877" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32838285" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.65346533" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -666,9 +660,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/testpython/nice.py</url>
-          <line>152</line>
-          <option name="timeStamp" value="39" />
+          <url>file://$PROJECT_DIR$/src/testpython/nice_airtest.py</url>
+          <line>96</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/src/testpython/nice_airtest.py</url>
+          <line>73</line>
+          <option name="timeStamp" value="55" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -678,17 +677,10 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="40" />
+      <option name="time" value="59" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/testcase/test001.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="38" column="38" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/testpython/exceltest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -839,13 +831,6 @@
     <entry file="file://D:/Python27/Lib/site-packages/poco/utils/airtest/input.py" />
     <entry file="file://D:/Python27/Lib/site-packages/poco/drivers/android/uiautomation.py" />
     <entry file="file://D:/Python27/Lib/site-packages/airtest/core/api.py" />
-    <entry file="file://$PROJECT_DIR$/src/testpython/DC_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1863">
-          <caret line="70" column="16" selection-start-line="70" selection-start-column="11" selection-end-line="70" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Python27/Lib/site-packages/pywinauto/application.py" />
     <entry file="file://D:/Python27/Lib/site-packages/wda/__init__.py" />
     <entry file="file://D:/Python27/Lib/site-packages/poco/proxy.py" />
@@ -920,18 +905,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/testpython/nice_airtest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="112" column="19" selection-start-line="112" selection-start-column="19" selection-end-line="112" selection-end-column="19" />
-          <folding>
-            <element signature="e#25#55#0" expanded="true" />
-            <element signature="e#306#922#0" />
-            <element signature="e#988#1095#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/testcase/test001.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5">
@@ -957,15 +930,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/testpython/DC_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-27">
+          <caret line="78" column="10" selection-start-line="78" selection-start-column="4" selection-end-line="78" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/testpython/nice_airtest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1081">
+          <caret line="69" column="8" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="8" />
+          <folding>
+            <element signature="e#25#55#0" expanded="true" />
+            <element signature="e#306#922#0" />
+            <element signature="e#988#1095#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/testpython/LocustTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="515">
+          <caret line="32" column="16" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/testpython/nice.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="175" lean-forward="true" selection-start-line="175" selection-end-line="175" />
+        <state relative-caret-position="2108">
+          <caret line="243" column="5" lean-forward="true" selection-start-line="243" selection-start-column="5" selection-end-line="243" selection-end-column="5" />
           <folding>
             <element signature="e#15#26#0" expanded="true" />
             <element signature="e#268#836#0" />
             <element signature="e#872#1254#0" />
+            <element signature="e#1290#1821#0" />
             <element signature="e#1878#2599#0" />
+            <element signature="e#2509#5614#0" />
+            <element signature="e#5662#5893#0" />
           </folding>
         </state>
       </provider>
