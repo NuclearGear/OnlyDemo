@@ -73,7 +73,7 @@ def getPrice(url,data):
         "User-Agent": "KKShopping/5.4.2 (iPhone 8; iOS 12.3.1; Scale/2.00)"
     }
     try:
-        r = requests.post(url,headers=h,data=data,verify=False,timeout=2)
+        r = requests.post(url,headers=h,data=data,verify=False,timeout=3)
         # response = r.text
         # print (response)
         return r
@@ -170,26 +170,26 @@ if __name__ == "__main__":
     heifen='''nice-sign-v1://0b9ed6a0a7222d54decfe2f01510a03c:gq5z0y9pan7qviel/{"id":"154035"}'''
     hongou='''nice-sign-v1://510cce818f9d5cd1168628eff79a3d78:v7tdjkmkvlj56os9/{"id":"103024"}'''
 
-    chajia=150
+    chajia=200
 
     threads = []
-    t1 = threading.Thread(target=bot,args=(url,heimanData,"黑满天星",3000,4))
+    t1 = threading.Thread(target=bot,args=(url,heimanData,"黑满天星",7000,4))
     threads.append(t1)
     t2 = threading.Thread(target=bot,args=(url,daogouData,"倒钩",3000,3))
     threads.append(t2)
     t3 = threading.Thread(target=bot,args=(url,offwhitebeika,"北卡蓝",3000,4))
     threads.append(t3)
-    t4 = threading.Thread(target=bot,args=(url,hurenData,"湖人",600,3))
+    t4 = threading.Thread(target=bot,args=(url,hurenData,"湖人",1500,2))
     threads.append(t4)
-    t5 = threading.Thread(target=bot,args=(url,heiyeezyData,"黑天使",350,1.5))
+    t5 = threading.Thread(target=bot,args=(url,heiyeezyData,"黑天使",chajia,1))
     threads.append(t5)
-    t6 = threading.Thread(target=bot,args=(url,fentianshi,"粉天使",chajia,1.5))
+    t6 = threading.Thread(target=bot,args=(url,fentianshi,"粉天使",chajia,1))
     threads.append(t6)
-    t7 = threading.Thread(target=bot,args=(url,baiyeezy,"白冰激凌",chajia,3))
+    t7 = threading.Thread(target=bot,args=(url,baiyeezy,"白冰激凌",chajia,2))
     threads.append(t7)
-    t8 = threading.Thread(target=bot,args=(url,laomei,"美洲限定",chajia,2))
+    t8 = threading.Thread(target=bot,args=(url,laomei,"美洲限定",chajia,1.5))
     threads.append(t8)
-    t9 = threading.Thread(target=bot,args=(url2,sacai,"SACAI",chajia,2))
+    t9 = threading.Thread(target=bot,args=(url2,sacai,"SACAI",300,2))
     threads.append(t9)
     t10 = threading.Thread(target=bot,args=(url2,heifen,"黑粉",chajia,2))
     threads.append(t10)
