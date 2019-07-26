@@ -9,7 +9,7 @@ poco = AndroidUiautomationPoco(use_airtest_input=True, screenshot_each_action=Fa
 
 class nice_airtest():
 
-    def waitFor(self,By,value,timeout=5):
+    def waitFor(self,By,value,timeout=2):
         try:
             if(By=="text"):
                 element = poco(text=value).wait(timeout)
@@ -27,7 +27,7 @@ class nice_airtest():
             raise Exception("参数不正确:"+By+"="+value)
         return  element
 
-    def waitForVisibleOrNot(self, By, value,timeout=5):
+    def waitForVisibleOrNot(self, By, value,timeout=2):
         if self.waitFor(By, value,timeout).exists():
             return True
         else:
@@ -35,37 +35,28 @@ class nice_airtest():
 
     def buy(self,name,size,price):
         try:
-            if (poco(text="想要的nice好货").exists()):
+            if self.waitForVisibleOrNot("text","想要的nice好货",1):
                 if self.waitForVisibleOrNot("contains",name,1):
                     self.waitFor("contains", name,1).click()
                 else:
-                    swipe((150, 800), (150, 0))
-                    sleep(0.2)
-                    if self.waitForVisibleOrNot("contains", name, 1):
-                        self.waitFor("contains", name, 1).click()
-                    else:
+                    for i in range(2):
                         swipe((150, 800), (150, 0))
-                        sleep(0.2)
-                        self.waitFor("contains", name).click()
-
+                        if self.waitForVisibleOrNot("contains", name, 0.1):
+                            self.waitFor("contains", name, 1).click()
+                            break
             else:
                 stop_app("com.nice.main")
                 start_app("com.nice.main")
                 poco(text="我").click()
                 poco("com.nice.main:id/txt_want").click()
-                sleep(2)
-                if self.waitForVisibleOrNot("contains",name,4):
-                    self.waitFor("contains", name,2).click()
+                if self.waitForVisibleOrNot("contains",name,1):
+                    self.waitFor("contains", name,1).click()
                 else:
-                    swipe((150, 800), (150, 0))
-                    sleep(0.2)
-                    if self.waitForVisibleOrNot("contains", name, 1):
-                        self.waitFor("contains", name, 1).click()
-                    else:
+                    for i in range(2):
                         swipe((150, 800), (150, 0))
-                        sleep(0.2)
-                        self.waitFor("contains", name).click()
-
+                        if self.waitForVisibleOrNot("contains", name, 0.1):
+                            self.waitFor("contains", name, 1).click()
+                            break
             poco("com.nice.main:id/sdv_cover").click()
             poco("com.nice.main:id/tv_buy").click()
 
@@ -116,14 +107,14 @@ class nice_airtest():
 
 if __name__ == "__main__":
     # name='''YEEZY BOOST 350 V2 2019年版 "SYNTH" 粉天使 亚洲限定'''
-    name='''黑粉'''
+    name='''LOW'''
     #name='''YEEZY BOOST 350 V2 2019年版 "CLAY" 粘土 美洲限定'''
     #name='''YEEZY BOOST 350 V2 2019年版 "BLACK REFLECTIVE" 黑满天星'''
     #name='''OFF-WHITE x AIR JORDAN 1 联名 2018年版 "北卡蓝"'''
     # name='''YEEZY BOOST 350 V2 "CREAM WHITE" 白冰淇淋'''
     # name='''NIKE SB x AIR JORDAN 1 联名 2019年版 "LA TO CHICAGO" 湖人 芝加哥 刮刮乐'''
     # name='''TRAVIS SCOTT x AIR JORDAN 1 联名 "CACTUS JACK" 2018年版 反钩 倒钩'''
-    size="48"
+    size="45"
     b=nice_airtest()
-    b.buy(name,size,"998")
+    b.buy(name,size,"8000")
     # sendqqEmail.sendqqEmail(name,name)

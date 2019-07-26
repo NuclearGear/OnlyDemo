@@ -126,8 +126,8 @@ def calculatePrice(r,name,chajia):
                             sendqqEmail(subject, content)
                             print ("\n-----------------------"+name+i+"码闪购价格低于现货价格"+str(price1-price2)+"元,现货价格:"+str(price1)+"元,闪购价格:"+str(price2)+"-----------------------\n")
                             #启动airtest购物商品
+                            at = nice_airtest()
                             sendqqEmail(subject, content,"18964698690@163.com")
-                            at=nice_airtest()
                             at.buy(name,i,price2)
                         elif(chajia==0 and price1>price2):
                             subject=name+i+"码闪购价格低于现货价格"
@@ -169,6 +169,7 @@ if __name__ == "__main__":
     sacai='''nice-sign-v1://ecca8b4e94313b201a0aac0ceba0eea9:yyqnxpkswxa1vlad/{"id":"95618"}'''
     heifen='''nice-sign-v1://0b9ed6a0a7222d54decfe2f01510a03c:gq5z0y9pan7qviel/{"id":"154035"}'''
     hongou='''nice-sign-v1://510cce818f9d5cd1168628eff79a3d78:v7tdjkmkvlj56os9/{"id":"103024"}'''
+    daogouLOW='''nice-sign-v1://cf274642db4e8358df7eb689084939aa:bocyyj5nsepplna8/{"id":"195274"}'''
 
     chajia=200
 
@@ -195,14 +196,16 @@ if __name__ == "__main__":
     threads.append(t10)
     t11 = threading.Thread(target=bot,args=(url2,hongou,"红勾",chajia,2))
     threads.append(t11)
+    t12 = threading.Thread(target=bot,args=(url2,daogouLOW,"LOW",500,2))
+    threads.append(t12)
     for t in threads:
          t.setDaemon(True)
          t.start()
     t.join()
 
-    # r=getPrice(url2, hongou)
-    # calculatePrice(r,"红勾",chajia)
-    # bot(url,heimanData,"黑满天星",2000)
+    # r=getPrice(url2, daogouLOW)
+    # calculatePrice(r,"LOW",chajia)
+    # bot(url2,daogouLOW,"LOW",2000)
 
     # while (True):
     #     X=judgeTime("07:20", "23:59")
