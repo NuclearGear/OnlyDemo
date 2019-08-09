@@ -68,11 +68,11 @@ class nice_airtest():
                     poco("com.nice.main:id/tv_storage_title").click()
                     poco("com.nice.main:id/btn_submit").click()
                     poco("com.nice.main:id/btn_confirm").click()
-                    print("已自动下单" + name + size + "码,价格:" + goodsPrice)
+                    print("\n已自动下单" + name + size + "码,价格:" + goodsPrice)
                     subject = "已自动下单" + name + size + "码,价格:" + goodsPrice + ",请速确认是否购买成功"
                     sendqqEmail.sendqqEmail(subject, subject)
                 else:
-                    print("价格不满足预期,返回商品页")
+                    print("\n价格不满足预期,返回商品页")
             else:
                 for i in range(14):
                     swipe((150, 800), (150, 0))
@@ -84,19 +84,20 @@ class nice_airtest():
                             poco("com.nice.main:id/tv_storage_title").click()
                             poco("com.nice.main:id/btn_submit").click()
                             poco("com.nice.main:id/btn_confirm").click()
-                            print("已自动下单"+name+size+"码,价格:"+goodsPrice)
+                            print("\n已自动下单"+name+size+"码,价格:"+goodsPrice)
                             subject="已自动下单"+name+size+"码,价格:"+goodsPrice+",请速确认是否购买成功"
                             sendqqEmail.sendqqEmail(subject,subject)
                             break
                         else:
-                            print("价格不满足预期,返回商品页")
+                            print("\n价格不满足预期,返回商品页")
                             break
             stop_app("com.nice.main")
             start_app("com.nice.main")
             poco(text="我").click()
             poco("com.nice.main:id/txt_want").click()
         except Exception as e:
-            print("购买失败，返回初始页")
+            print("\n购买失败，返回初始页")
+            snapshot("fail.jpg")
             stop_app("com.nice.main")
             start_app("com.nice.main")
             poco(text="我").click()
@@ -107,14 +108,14 @@ class nice_airtest():
 
 if __name__ == "__main__":
     # name='''YEEZY BOOST 350 V2 2019年版 "SYNTH" 粉天使 亚洲限定'''
-    name='''LOW'''
+    name='''湖人'''
     #name='''YEEZY BOOST 350 V2 2019年版 "CLAY" 粘土 美洲限定'''
     #name='''YEEZY BOOST 350 V2 2019年版 "BLACK REFLECTIVE" 黑满天星'''
     #name='''OFF-WHITE x AIR JORDAN 1 联名 2018年版 "北卡蓝"'''
     # name='''YEEZY BOOST 350 V2 "CREAM WHITE" 白冰淇淋'''
     # name='''NIKE SB x AIR JORDAN 1 联名 2019年版 "LA TO CHICAGO" 湖人 芝加哥 刮刮乐'''
     # name='''TRAVIS SCOTT x AIR JORDAN 1 联名 "CACTUS JACK" 2018年版 反钩 倒钩'''
-    size="45"
+    size="42.5"
     b=nice_airtest()
-    b.buy(name,size,"8000")
+    b.buy(name,size,"4600")
     # sendqqEmail.sendqqEmail(name,name)
