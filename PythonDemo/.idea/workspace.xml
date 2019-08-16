@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eafa3306-c840-4e99-a835-6339a6479473" name="Default" comment="test">
-      <change afterPath="$PROJECT_DIR$/src/testpython/nice_api.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/.idea/.name" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/.idea/DreamMultiDevices.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/.idea/encodings.xml" beforeDir="false" />
@@ -42,6 +41,7 @@
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/tools/Screencap.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../DreamMultiDevices/tools/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/testpython/fail.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/testpython/fail.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/testpython/nice.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/testpython/nice.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/testpython/nice_airtest.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/testpython/nice_airtest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../advertisement-airtest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../advertisement-airtest/.idea/workspace.xml" afterDir="false" />
@@ -94,8 +94,8 @@
       <file leaf-file-name="nice.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/testpython/nice.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-81">
-              <caret line="199" column="67" selection-start-line="199" selection-start-column="67" selection-end-line="199" selection-end-column="67" />
+            <state relative-caret-position="50">
+              <caret line="190" column="73" lean-forward="true" selection-start-line="190" selection-start-column="73" selection-end-line="190" selection-end-column="73" />
               <folding>
                 <element signature="e#15#26#0" expanded="true" />
               </folding>
@@ -106,8 +106,8 @@
       <file leaf-file-name="nice_airtest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/testpython/nice_airtest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="113" column="26" selection-start-line="113" selection-start-column="26" selection-end-line="113" selection-end-column="26" />
+            <state relative-caret-position="1967">
+              <caret line="97" column="30" lean-forward="true" selection-start-line="97" selection-start-column="30" selection-end-line="97" selection-end-column="30" />
               <folding>
                 <element signature="e#25#55#0" expanded="true" />
                 <element signature="e#306#922#0" />
@@ -185,6 +185,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -246,7 +247,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -275,7 +275,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.nice-airtest">
+  <component name="RunManager" selected="Python.nice">
     <configuration name="LoggingTest" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="helloWorld" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -634,18 +634,27 @@
       <configuration name="Unittests in JIRA_createbug" configurationId="tests" />
     </history-entry>
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.375" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32838285" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50074404" side_tool="true" weight="0.50825083" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32838285" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49925596" visible="true" weight="0.669967" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49925596" weight="0.669967" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32838285" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.70957094" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.65346533" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -926,10 +935,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/testpython/fail.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/testpython/nice_airtest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="113" column="26" selection-start-line="113" selection-start-column="26" selection-end-line="113" selection-end-column="26" />
+        <state relative-caret-position="1967">
+          <caret line="97" column="30" lean-forward="true" selection-start-line="97" selection-start-column="30" selection-end-line="97" selection-end-column="30" />
           <folding>
             <element signature="e#25#55#0" expanded="true" />
             <element signature="e#306#922#0" />
@@ -938,13 +950,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/testpython/fail.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/testpython/nice.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-81">
-          <caret line="199" column="67" selection-start-line="199" selection-start-column="67" selection-end-line="199" selection-end-column="67" />
+        <state relative-caret-position="50">
+          <caret line="190" column="73" lean-forward="true" selection-start-line="190" selection-start-column="73" selection-end-line="190" selection-end-column="73" />
           <folding>
             <element signature="e#15#26#0" expanded="true" />
           </folding>

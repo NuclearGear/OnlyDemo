@@ -97,7 +97,7 @@ class nice_airtest():
             poco("com.nice.main:id/txt_want").click()
         except Exception as e:
             print("\n购买失败，返回初始页")
-            snapshot("fail.jpg")
+            snapshot(name+size+"_fail.jpg")
             stop_app("com.nice.main")
             start_app("com.nice.main")
             poco(text="我").click()

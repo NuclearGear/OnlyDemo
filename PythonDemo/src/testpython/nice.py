@@ -121,7 +121,7 @@ def calculatePrice(r,name,chajia):
                         price1=int(xianhuo.get(i))
                         price2=int(shangou.get(i))
                         price3=price1-price2
-                        if(chajia>0 and price3>chajia):
+                        if(chajia>0 and price3>=chajia):
                             subject=name+i+"码闪购价格低于现货价格"+str(price3)+"元,现货价格:"+str(price1)+"元,闪购价格:"+str(price2)
                             content="现货价格:"+str(price1)+"元,闪购价格:"+str(price2)+"\n低"+str(price3)+"元，请速查看app"
                             sendqqEmail(subject, content)
@@ -174,33 +174,36 @@ if __name__ == "__main__":
     heifen='''nice-sign-v1://0b9ed6a0a7222d54decfe2f01510a03c:gq5z0y9pan7qviel/{"id":"154035"}'''
     hongou='''nice-sign-v1://510cce818f9d5cd1168628eff79a3d78:v7tdjkmkvlj56os9/{"id":"103024"}'''
     daogouLOW='''nice-sign-v1://cf274642db4e8358df7eb689084939aa:bocyyj5nsepplna8/{"id":"195274"}'''
+    sichou='''nice-sign-v1://d4e7d16531335225dc86749d182f62c3:4842j7rnpexlyd0u/{"id":"190765"}'''
 
     chajia=200
     threads = []
-    t1 = threading.Thread(target=bot,args=(url,heimanData,"黑满天星",8000,4))
+    t1 = threading.Thread(target=bot,args=(url,heimanData,"黑满天星",6000,3))
     threads.append(t1)
-    t2 = threading.Thread(target=bot,args=(url,daogouData,"反钩",7000,4))
+    t2 = threading.Thread(target=bot,args=(url,daogouData,"反钩",1500,3))
     threads.append(t2)
-    t3 = threading.Thread(target=bot,args=(url,offwhitebeika,"北卡蓝",6000,3))
+    t3 = threading.Thread(target=bot,args=(url,offwhitebeika,"北卡蓝",8000,2))
     threads.append(t3)
-    t4 = threading.Thread(target=bot,args=(url,hurenData,"湖人",500,1))
+    t4 = threading.Thread(target=bot,args=(url,hurenData,"湖人",400,1))
     threads.append(t4)
-    t5 = threading.Thread(target=bot,args=(url,heiyeezyData,"黑天使",150,0.5))
+    t5 = threading.Thread(target=bot,args=(url,heiyeezyData,"黑天使",chajia,0.5))
     threads.append(t5)
-    t6 = threading.Thread(target=bot,args=(url,fentianshi,"粉天使",120,0.5))
+    t6 = threading.Thread(target=bot,args=(url,fentianshi,"粉天使",400,0.5))
     threads.append(t6)
-    t7 = threading.Thread(target=bot,args=(url,baiyeezy,"白冰淇淋",150,2))
+    t7 = threading.Thread(target=bot,args=(url,baiyeezy,"白冰淇淋",chajia,2))
     threads.append(t7)
-    t8 = threading.Thread(target=bot,args=(url,laomei,"美洲限定",150,2))
+    t8 = threading.Thread(target=bot,args=(url,laomei,"美洲限定",300,2))
     threads.append(t8)
-    t9 = threading.Thread(target=bot,args=(url2,sacai,"SACAI",1300,2))
+    t9 = threading.Thread(target=bot,args=(url2,sacai,"SACAI",1200,2))
     threads.append(t9)
-    t10 = threading.Thread(target=bot,args=(url2,heifen,"黑粉",100,2))
+    t10 = threading.Thread(target=bot,args=(url2,heifen,"黑粉",150,2))
     threads.append(t10)
-    t11 = threading.Thread(target=bot,args=(url2,hongou,"红钩",100,1))
+    t11 = threading.Thread(target=bot,args=(url2,hongou,"红钩",200,1))
     threads.append(t11)
-    t12 = threading.Thread(target=bot,args=(url2,daogouLOW,"LOW",500,3))
+    t12 = threading.Thread(target=bot,args=(url2,daogouLOW,"LOW",1000,1))
     threads.append(t12)
+    # t13 = threading.Thread(target=bot,args=(url2,sichou,"丝绸",3001,1.5))
+    # threads.append(t13)
     for t in threads:
          t.setDaemon(True)
          t.start()
@@ -208,7 +211,7 @@ if __name__ == "__main__":
 
     # r=getPrice(url2, daogouLOW)
     # calculatePrice(r,"LOW",chajia)
-    # bot(url2,daogouLOW,"LOW",2000)
+    # bot(url2,sichou,"丝绸",2000,0.5)
 
     # while (True):
     #     X=judgeTime("07:20", "23:59")
